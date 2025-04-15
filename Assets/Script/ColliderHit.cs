@@ -6,61 +6,49 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ColliderHit : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     [SerializeField] private int hitTime;
     public ScoreMangaer scoreManager;
     private int _hitCount;
+    public GameObject ParentObj;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
-    public TextMeshPro  BrickValue;
+    public TMP_Text  BrickValue;
     private float  scoreReduce;
-     private float newScore;
+    private int BrickValueInt;
+    private int newScore;
     void Start()
     {
      scoreManager.score = 0;
+     BrickValueInt = int.Parse(BrickValue.text);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" && _hitCount < hitTime)
+        if (collision.gameObject.tag == "Player")
         {
-            _hitCount++;
-            Debug.Log(_hitCount);
-            if (_hitCount == hitTime)
+            if (_hitCount < hitTime )
             {
-                scoreManager.score += 1;
-               
-                scoreReduce -= 1;
-                scoreText.text = scoreManager.score.ToString(); 
-                newScore = hitTime + scoreReduce;
-                BrickValue.text =newScore.ToString();
-                if (scoreManager.score > scoreManager.highscore)
+                _hitCount++;
+                BrickValueInt--;
+                BrickValue.text = BrickValueInt.ToString();
+                if(BrickValueInt == 0 )
                 {
-                    scoreManager.highscore = scoreManager.score;
-                    highScoreText.text = scoreManager.highscore.ToString();
+                    Destroy(ParentObj); // Parent object destroy hoga jab brick value 0 hojaye toh
+                    //Destroy(gameObject); // Destroy agar text value 0 hojaye toh
+                    
+
+                    //prefab ke sath clash horaha tha islea disaBLE KIYA
+                    //scoreManager.score += 1;
+                    //scoreText.text = scoreManager.score.ToString();
+
+                    //if (scoreManager.score > scoreManager.highscore)
+                    //{
+                    //    scoreManager.highscore = scoreManager.score;
+                    //    highScoreText.text = scoreManager.highscore.ToString();
+                    //}
                 }
-                Destroy(gameObject);
             }
-        }
-        
-        else if (collision.gameObject.tag == "Player" && hitTime == _hitCount)
-        {
-            scoreReduce -= 1;
-            scoreText.text = scoreManager.score.ToString(); 
-            newScore = hitTime + scoreReduce;
-            BrickValue.text =newScore.ToString();
-            
-            Destroy(gameObject);
-            
-            
-            
-            
-          scoreManager.score += 1;
-          scoreText.text = scoreManager.score.ToString();
-         if (scoreManager.score > scoreManager.highscore)
-         {
-             scoreManager.highscore = scoreManager.score;
-             highScoreText.text = scoreManager.highscore.ToString();
-         }
         }
     }
 }

@@ -14,12 +14,11 @@ public class BallMovementScript : MonoBehaviour
     private bool isMoving;
     private Vector2 newStartPos;
    Vector2 endPos;
-   private float _laserLength;
-   private  LineRenderer line;
+
 
     void Start()
     {
-        line = GetComponent<LineRenderer>();
+    
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
@@ -28,7 +27,7 @@ public class BallMovementScript : MonoBehaviour
     void Update()
     {
         sliderValue = slider.value;
-        transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 25);
+        transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 45);
         if (Input.GetMouseButtonUp(0) && !isMoving)
         {
             isMoving = true;
