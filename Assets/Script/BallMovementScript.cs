@@ -36,25 +36,6 @@ public class BallMovementScript : MonoBehaviour
 
     }
 
-    //  void FixedUpdate()
-    // {
-    //     RaycastHit2D hit = Physics2D.Raycast(transform.position,Vector2.up,200f);
-    //     
-    //     if (hit)
-    //     {
-    //         line.SetPosition(0, hit.point);
-    //         //line.SetPosition(1, hit.transform.position);
-    //         
-    //         Debug.DrawRay(startPos, transform.up, Color.yellow);
-    //     }
-    //     // RaycastHit2D hit = Physics2D.Linecast(startPos, new Vector2(0,15));
-    //     //
-    //     // if (hit)
-    //     // {
-    //     //     Debug.DrawLine(startPos, hit.point, Color.red);
-    //     // }
-    // }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))

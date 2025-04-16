@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4568563618933393319}
   m_Layer: 0
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: clone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

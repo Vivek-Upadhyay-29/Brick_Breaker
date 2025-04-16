@@ -1952,14 +1952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4019550f0619c410e8f3fe4204733f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  line: {fileID: 671224448}
-  resolution: 3
-  velocity: {x: 0, y: 0}
-  yLimit: 0
-  linecastResolution: 2
-  canHit:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &675048420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,16 +2059,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameObjects:
+  - {fileID: 2628047113682065096, guid: 247bf48c52e703d478b28e9577c2b68f, type: 3}
   - {fileID: 2051457712879680880, guid: 24aac3daf37c84325bf1b8300158d131, type: 3}
   - {fileID: 6121377902219880815, guid: 02d4639132a9f4b1998cdc2beba62166, type: 3}
   - {fileID: 3322179033478958221, guid: 2af4e14b8b7504414b795cb9a21a02fb, type: 3}
   - {fileID: 4485440782415024400, guid: c401b79f3159d440f85df1f39d4c92f5, type: 3}
   - {fileID: 2628047113682065096, guid: bb7180074d84544d29ae4513ef3d09ff, type: 3}
-  - {fileID: 2628047113682065096, guid: 247bf48c52e703d478b28e9577c2b68f, type: 3}
   spacing: 0.8
-  scoreManager: {fileID: 11400000, guid: 412eb2b3b630a4b00a80cc035846fe08, type: 2}
-  scoreText: {fileID: 651741876}
-  highScoreText: {fileID: 299900046}
 --- !u!4 &680323717
 Transform:
   m_ObjectHideFlags: 0
@@ -3967,12 +3956,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f33a30e674c540f28a4805be118a13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotsNumber: 31
-  dotsParent: {fileID: 154818767}
-  dotPrefab: {fileID: 4932463454381537256, guid: d9793e138ec144d869ab27f872242ec6, type: 3}
-  dotSpacing: 0.03
-  dotMinScale: 0.01
-  dotMaxScale: 0.3
 --- !u!1 &1198891479
 GameObject:
   m_ObjectHideFlags: 0

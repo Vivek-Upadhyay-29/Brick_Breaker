@@ -27,8 +27,9 @@ public class ColliderHit : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            
             if (_hitCount < hitTime )
-            {
+            { 
                 _hitCount++;
                 BrickValueInt--;
                 BrickValue.text = BrickValueInt.ToString();
@@ -47,6 +48,18 @@ public class ColliderHit : MonoBehaviour
                     //    scoreManager.highscore = scoreManager.score;
                     //    highScoreText.text = scoreManager.highscore.ToString();
                     //}
+                }
+                
+                
+                
+                
+                if (collision.gameObject.tag == "Player")
+                {
+                    Rigidbody2D rigidBody = collision.gameObject.GetComponent<Rigidbody2D>();
+                    if (rigidBody.transform.position.y <= -2.78)
+                    {
+                        transform.Translate(Vector3.down * 2 * Time.deltaTime);
+                    }
                 }
             }
         }
