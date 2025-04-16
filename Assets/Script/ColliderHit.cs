@@ -35,8 +35,13 @@ public class ColliderHit : MonoBehaviour
                 BrickValue.text = BrickValueInt.ToString();
                 if(BrickValueInt == 0 )
                 {
-                    Destroy(ParentObj); // Parent object destroy hoga jab brick value 0 hojaye toh
-                    //Destroy(gameObject); // Destroy agar text value 0 hojaye toh
+                    
+                    //object destroy  pai error throw kar raha tha toh disable karwake dekh liya
+                    ParentObj.SetActive(false);
+                   // Destroy(ParentObj); // Parent object destroy hoga jab brick value 0 hojaye toh
+               
+             
+             //Destroy(gameObject); // Destroy agar text value 0 hojaye toh
                     
 
                     //prefab ke sath clash horaha tha islea disaBLE KIYA
