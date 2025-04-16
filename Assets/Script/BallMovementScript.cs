@@ -12,8 +12,8 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private float sliderValue;
     private Vector2 startPos;
     private bool isMoving;
-    private Vector2 newStartPos;
-   Vector2 endPos;
+    private Vector2 newStartPos; 
+    Vector2 endPos;
 
 
     void Start()
