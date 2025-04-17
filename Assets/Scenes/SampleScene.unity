@@ -3154,7 +3154,7 @@ GameObject:
   - component: {fileID: 963671077}
   - component: {fileID: 963671076}
   - component: {fileID: 963671079}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3314,7 +3314,7 @@ MonoBehaviour:
   useRay: 0
   useLine: 1
   ballPreab: {fileID: 2160886920255058959, guid: e5b83a031bc5a41c5bbd1d26db94355b, type: 3}
-  _ballcount: 1
+  _ballcount: 0
 --- !u!120 &963671079
 LineRenderer:
   serializedVersion: 2
