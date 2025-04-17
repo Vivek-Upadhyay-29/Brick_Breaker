@@ -99,15 +99,19 @@ public class BallMovementScript : MonoBehaviour
     {
         for (int i = 0; i < _ballcount; i++)
         {
-            yield return new WaitForSeconds(0.08f);
+           
             GameObject ball = Instantiate(ballPreab, transform.position, Quaternion.identity);
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+            yield return new WaitForSeconds(0.08f);
             ballRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
             Physics2D.IgnoreCollision(ball.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             Physics2D.IgnoreCollision(BallGameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
         }
     }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
