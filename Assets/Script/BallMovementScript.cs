@@ -37,7 +37,7 @@ public class BallMovementScript : MonoBehaviour
         line = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
-        rb = GetComponent<Rigidbody2D>();
+    
     }
 
     public void FixedUpdate()
@@ -97,19 +97,21 @@ public class BallMovementScript : MonoBehaviour
 
     IEnumerator Shootball()
     {
+        Vector2 shootPosition = transform.position; 
+
         for (int i = 0; i < _ballcount; i++)
         {
-           
-            GameObject ball = Instantiate(ballPreab, transform.position, Quaternion.identity);
+            GameObject ball = Instantiate(ballPreab, shootPosition, Quaternion.identity);
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
-            yield return new WaitForSeconds(0.08f);
-            ballRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
-            Physics2D.IgnoreCollision(ball.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            Physics2D.IgnoreCollision(BallGameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
+            ballRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+            //
+            // Physics2D.IgnoreCollision(ball.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            // Physics2D.IgnoreCollision(BallGameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
+            yield return new WaitForSeconds(0.08f); 
         }
     }
-
 
 
     private void OnCollisionEnter2D(Collision2D collision)
