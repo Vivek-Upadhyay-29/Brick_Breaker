@@ -37,7 +37,7 @@ public class BallMovementScript : MonoBehaviour
         line = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
-    
+    line.enabled = false;
     }
 
     public void FixedUpdate()
@@ -45,6 +45,7 @@ public class BallMovementScript : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            line.enabled = true;
             
          ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask); 
          // Debug.DrawRay(transform.position, ray.point, Color.red);
@@ -71,7 +72,10 @@ public class BallMovementScript : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         
         }
-        
+        else
+        {
+            line.enabled = false;
+        }
     }
     
     void Update()
@@ -84,7 +88,7 @@ public class BallMovementScript : MonoBehaviour
             isMoving = true;
             if (isMoving)
             {
-                 line.enabled = false;
+                 // line.enabled = false;
                  Debug.Log(gameObject.name );
             }
           
@@ -109,7 +113,7 @@ public class BallMovementScript : MonoBehaviour
             // Physics2D.IgnoreCollision(ball.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             // Physics2D.IgnoreCollision(BallGameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 
-            yield return new WaitForSeconds(0.08f); 
+            yield return new WaitForSeconds(0.1f); 
         }
     }
 
@@ -127,7 +131,7 @@ public class BallMovementScript : MonoBehaviour
            line.transform.position = transform.position;
            if (!isMoving)
            {
-                line.enabled = true;
+                // line.enabled = true;
                Debug.Log(gameObject.name );
            }
         }

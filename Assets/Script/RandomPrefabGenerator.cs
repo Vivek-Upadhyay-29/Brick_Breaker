@@ -50,6 +50,8 @@ public class RandomPrefabGenerator : MonoBehaviour
 
         }
 
+        
+        //this for adding new row when grid moves down
         for (int j = 0; j < 5; j++)
         {
 
