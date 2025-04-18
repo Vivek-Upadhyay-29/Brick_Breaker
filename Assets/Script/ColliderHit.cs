@@ -25,7 +25,7 @@ public class ColliderHit : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "PlayerPrefab" )
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "cloneBall" )
         {
             
             if (_hitCount < hitTime )

@@ -9,6 +9,7 @@ TagManager:
   - trigger
   - Multiplier
   - PlayerPrefab
+  - cloneBall
   layers:
   - Default
   - TransparentFX

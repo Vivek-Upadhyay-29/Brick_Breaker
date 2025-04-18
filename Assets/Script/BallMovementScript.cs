@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.UI;
 
 
@@ -11,56 +12,63 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private float speed = 1;
     [SerializeField] private float sliderValue;
     private Vector2 startPos;
+    private bool isIdle;
     private bool isMoving;
-    private Vector2 newStartPos; 
+    private Vector2 newStartPos;
     Vector2 endPos;
-    public GameObject BallGameObject;
 
-
-    [Header("Raycast")]
-    [SerializeField] private LayerMask layermask;
+    [Header("Raycast")] [SerializeField] private LayerMask layermask;
     private RaycastHit2D ray;
     private float angle;
     [SerializeField] Vector2 minMaxAngle;
 
-    [Header("LineRenderer")]
-    [SerializeField] LineRenderer line;
+    [Header("LineRenderer")] [SerializeField]
+    LineRenderer line;
+
     [SerializeField] private bool useRay;
     [SerializeField] private bool useLine;
-    
+
     [Header("Ball Prefab")]
-    [SerializeField] private GameObject ballPreab;
-    [SerializeField] private int _ballcount  =  1;
+    public List<GameObject> ballClone;
+    public bool _isCloned;
+    public int _ballcount = 1;
+    [SerializeField] SpriteRenderer sprite;
+public int presentBallCount;
+
     void Start()
     {
-     
+
         line = GetComponent<LineRenderer>();
+        sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         line.enabled = false;
+        _isCloned = false;
     }
 
     public void FixedUpdate()
-    
+
     {
-        if (Input.GetMouseButton(0))
+ 
+        if (Input.GetMouseButton(0) && !isMoving)
         {
             line.enabled = true;
-            
-         ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask); 
-         // Debug.DrawRay(transform.position, ray.point, Color.red);
-        
-            Vector2 reflactpos = Vector2.Reflect(new Vector3(ray.point.x, ray.point.y, 0) -transform.position, ray.normal);
-            Vector3 pos =  transform.up * reflactpos.y + transform.position;
+            // sprite.enabled = true;
+
+            ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask);
+            // Debug.DrawRay(transform.position, ray.point, Color.red);
+
+            Vector2 reflactpos = Vector2.Reflect(new Vector3(ray.point.x, ray.point.y, 0) - transform.position, ray.normal);
+            Vector3 pos = transform.up * reflactpos.y + transform.position;
             Vector2 direction = Input.mousePosition - pos;
 
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
             if (angle >= minMaxAngle.x && angle <= minMaxAngle.y)
                 if (useRay)
                 {
-                 Debug.DrawRay(transform.position, transform.up * ray.distance, Color.red);
-                 Debug.DrawRay(ray.point, reflactpos.normalized * 2f, Color.green);
-            
+                    Debug.DrawRay(transform.position, transform.up * ray.distance, Color.red);
+                    Debug.DrawRay(ray.point, reflactpos.normalized * 2f, Color.green);
+
                 }
 
             if (useLine)
@@ -69,31 +77,36 @@ public class BallMovementScript : MonoBehaviour
                 line.SetPosition(1, ray.point);
                 line.SetPosition(2, ray.point + reflactpos.normalized * 2f);
             }
+
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
+
         }
         else
         {
             line.enabled = false;
+            //sprite.enabled = false;
         }
     }
-    
+
     void Update()
     {
-        sliderValue = slider.value;
-        transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 45);
+
+    
+          sliderValue = slider.value;
+          transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
         if (Input.GetMouseButtonUp(0) && !isMoving)
         {
+
             StartCoroutine(Shootball());
             isMoving = true;
             if (isMoving)
             {
-                 // line.enabled = false;
-                 Debug.Log(gameObject.name );
+                // line.enabled = false;
+                Debug.Log(gameObject.name);
             }
-          
+
             rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
-                        
+
         }
 
 
@@ -101,54 +114,71 @@ public class BallMovementScript : MonoBehaviour
 
     IEnumerator Shootball()
     {
-        Vector2 shootPosition = transform.position; 
+        Vector2 shootPosition = transform.position;
 
         for (int i = 0; i < _ballcount; i++)
         {
-            GameObject ball = Instantiate(ballPreab, shootPosition, Quaternion.identity);
+
+            GameObject ball = ObjectPool.Instance.GetPooledObject();
+            if (ball != null)
+            {
+                ball.transform.position = shootPosition;
+                ball.SetActive(true);
+                ballClone.Add(ball);
+                
+
+            }
+
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
 
             ballRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
-            yield return new WaitForSeconds(0.1f); 
+            yield return new WaitForSeconds(0.1f);
+
         }
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
         if (collision.gameObject.CompareTag("ground"))
         {
+
             newStartPos = transform.position;
-           rb.velocity = Vector2.zero;
-           slider.value = 0;
-           transform.position = new Vector2(newStartPos.x, newStartPos.y);
-           isMoving = false;
-           Debug.Log("Position Reset");
-           line.transform.position = transform.position;
-           if (!isMoving)
-           {
+            rb.velocity = Vector2.zero;
+            slider.value = 0;
+            transform.position = new Vector2(newStartPos.x, newStartPos.y);
+            isMoving = false;
+            Debug.Log("Position Reset");
+            line.transform.position = transform.position;
+            
+            foreach (var balls in ballClone)
+            {
+
+                presentBallCount++;
+
+            }
+            Debug.Log(presentBallCount);
+            
+            if (!isMoving)
+            {
                 // line.enabled = true;
-               Debug.Log(gameObject.name );
-           }
+                Debug.Log(gameObject.name);
+            }
         }
-        
-        //
-        // if (collision.gameObject.tag == "Multiplier")
-        // {
-        //     _ballcount++;
-        //     Debug.Log(_ballcount);
-        // }
     }
 
-    
+
     //Ball multiplier detection
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Multiplier")
+
+
+        if (collision.gameObject.CompareTag("Multiplier"))
         {
             _ballcount++;
-            Debug.Log(_ballcount);
+            Debug.Log("  Ball Count: " + _ballcount);
         }
     }
-    
+
 }

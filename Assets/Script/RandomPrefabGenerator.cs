@@ -10,7 +10,6 @@ public class RandomPrefabGenerator : MonoBehaviour
     public int index = 0;
     public List<GameObject> prefabs = new List<GameObject>();
     public Ground ground;
-
     public bool IsGrounded;
 
     // Start is called before the first frame update
@@ -62,10 +61,6 @@ public class RandomPrefabGenerator : MonoBehaviour
            
         }
 
-        // if (!(prefabs[i] != null))
-        // {
-        //     prefabs.RemoveAt(i);
-        // }
         IsGrounded = false;
         yield return null;
     }

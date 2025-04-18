@@ -11,7 +11,7 @@ public class Prefab : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             Destroy(gameObject);
-        }
-      }
+        } 
+    }
 }
 
