@@ -7,7 +7,12 @@ public class AddBall : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    private void OnCollisionEnter2D(Collision2D other)
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     gameObject.SetActive(false);
+    // }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         gameObject.SetActive(false);
     }

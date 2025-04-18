@@ -37,7 +37,7 @@ public class BallMovementScript : MonoBehaviour
         line = GetComponent<LineRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
-    line.enabled = false;
+        line.enabled = false;
     }
 
     public void FixedUpdate()
@@ -109,10 +109,6 @@ public class BallMovementScript : MonoBehaviour
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
 
             ballRb.AddForce(transform.up * speed, ForceMode2D.Impulse);
-            //
-            // Physics2D.IgnoreCollision(ball.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            // Physics2D.IgnoreCollision(BallGameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
             yield return new WaitForSeconds(0.1f); 
         }
     }
@@ -135,7 +131,19 @@ public class BallMovementScript : MonoBehaviour
                Debug.Log(gameObject.name );
            }
         }
+        
+        //
+        // if (collision.gameObject.tag == "Multiplier")
+        // {
+        //     _ballcount++;
+        //     Debug.Log(_ballcount);
+        // }
+    }
 
+    
+    //Ball multiplier detection
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.tag == "Multiplier")
         {
             _ballcount++;
