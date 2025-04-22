@@ -23,9 +23,7 @@ public class ObjectPool : MonoBehaviour
         GameObject tmp;
         for(int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool);
-            tmp.SetActive(false);
-            pooledObjects.Add(tmp);
+            CreateNewObject();
         }
     }
     public GameObject GetPooledObject()
@@ -37,7 +35,17 @@ public class ObjectPool : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        return null;
+       
+        return CreateNewObject();
+    }
+
+    private GameObject CreateNewObject()
+    {
+        GameObject tmp;
+        tmp = Instantiate(objectToPool,transform);
+        tmp.SetActive(false);
+        pooledObjects.Add(tmp);
+        return tmp;
     }
     
 }

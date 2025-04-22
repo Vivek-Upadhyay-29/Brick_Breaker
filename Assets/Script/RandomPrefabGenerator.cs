@@ -7,8 +7,9 @@ public class RandomPrefabGenerator : MonoBehaviour
 {
     public List<GameObject> gameObjects = new List<GameObject>();
     public float spacing = 0.2f;
-    public int index = 0;
     public List<GameObject> prefabs = new List<GameObject>();
+    
+    public int index = 0;
     public Ground ground;
     public bool IsGrounded;
 

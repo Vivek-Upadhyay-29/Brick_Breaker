@@ -22,6 +22,7 @@ public class BallDownBtnScript : MonoBehaviour
         }
         ballMovementScript.ballClone.Clear();
         generator.MoveDown();
+        
         mainBall.transform.position = new Vector3(-0.007f, -3.117f, 0);
         }
     }
