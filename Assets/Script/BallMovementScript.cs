@@ -13,7 +13,7 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private float sliderValue;
     private Vector2 startPos;
     private bool isIdle;
-    private bool isMoving;
+    public bool isMoving;
     private Vector2 newStartPos;
     Vector2 endPos;
 
@@ -33,7 +33,7 @@ public class BallMovementScript : MonoBehaviour
     public bool _isCloned;
     public int _ballcount = 1;
     [SerializeField] SpriteRenderer sprite;
-public int presentBallCount;
+    public int presentBallCount;
 
     void Start()
     {
@@ -50,7 +50,7 @@ public int presentBallCount;
 
     {
  
-        if (Input.GetMouseButton(0) && !isMoving)
+        if (Input.GetMouseButton(0) && !isMoving && sliderValue !=0   ) 
         {
             line.enabled = true;
             // sprite.enabled = true;
@@ -90,11 +90,10 @@ public int presentBallCount;
 
     void Update()
     {
-
-    
-          sliderValue = slider.value;
-          transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
-        if (Input.GetMouseButtonUp(0) && !isMoving)
+        
+        sliderValue = slider.value;
+        transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
+        if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue !=0)
         {
 
             StartCoroutine(Shootball());
