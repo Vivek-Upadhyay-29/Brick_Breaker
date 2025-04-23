@@ -15,48 +15,34 @@ public class BrickSpawner : MonoBehaviour
     {
         SpawnBrickRow(); 
     }
-
-    //public void SpawnBrickRow()
-    //{
-    //    for (int j = 0; j < columns; j++)
-    //    {
-    //        int randomIndex = Random.Range(0, brickPrefabs.Count);
-    //        Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);
-
-    //        GameObject brickObj = Instantiate(brickPrefabs[randomIndex], spawnPos, Quaternion.identity);
-    //        spawnedBricks.Add(brickObj);
-
-
-    //        int brickValue = Mathf.Max(1, Random.Range(ballMovementScript.presentBallCount, ballMovementScript.presentBallCount + 10));
-    //        brickObj.GetComponent<Brick>().SetValue(brickValue);
-    //    }
-    //}
     public void SpawnBrickRow()
     {
-        if (ballMovementScript == null)
-        {
-            Debug.LogError("Script not assigned!");
-            return;
-        }
+       
 
         for (int j = 0; j < columns; j++)
         {
-            int randomIndex = Random.Range(0, brickPrefabs.Count);
+            int brickValue = Random.Range(0, ballMovementScript.presentBallCount +10);
+
             Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);
 
-            GameObject brickObj = Instantiate(brickPrefabs[randomIndex], spawnPos, Quaternion.identity);
-            spawnedBricks.Add(brickObj);
+            //GameObject brickObj = Instantiate(brickPrefabs[randomIndex], spawnPos, Quaternion.identity);
+            GameObject brickObj = BrickPool.Instance.GetPooledBrick();
+           brickObj.SetActive(true);
+         brickObj.transform.position = spawnPos;
 
-            Brick brickComponent = brickObj.GetComponent<Brick>();
-            if (brickComponent != null)
+           Brick brickComponent = brickObj.GetComponent<Brick>();
+        brickComponent.SetValue(brickValue);
+           if (brickComponent != null)
             {
-                int brickValue = Mathf.Max(1, Random.Range(ballMovementScript.presentBallCount, ballMovementScript.presentBallCount + 10));
+                
+                spawnedBricks.Add(brickObj);
+                brickObj.transform.position = spawnPos;
+                int brickValue = Random.Range(0, ballMovementScript.presentBallCount +10);
+               
                 brickComponent.SetValue(brickValue);
+                brickObj.SetActive(true);
             }
-            else
-            {
-             //   Debug.LogError("Brick prefab missing Brick script!");
-            }
+         
         }
     }
 

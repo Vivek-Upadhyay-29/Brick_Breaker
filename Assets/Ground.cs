@@ -12,15 +12,7 @@ public class Ground : MonoBehaviour
     public int cloneCount;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // if (collision.gameObject.tag == "Player")
-        // {
-        //     Debug.Log(collision.gameObject.name);
-        //
-        //     // if (ballMovement._isCloned)
-        //     // {
-        //         generator.MoveDown();
-        // //    }
-        // }
+
 
         if (collision.gameObject.tag == "cloneBall")
         {
@@ -30,17 +22,13 @@ public class Ground : MonoBehaviour
             {
                 ballMovement.ballClone.Clear();
                 ballMovement.presentBallCount = 0;
-                generator.MoveDown();
+              //  generator.MoveDown(); for previous instanciate down
                 cloneCount = 0;
 
                 //// new wala
                 //brickSpawner.MoveBricksDown(1);
                 brickSpawner.MoveDownAndAddNewRow();
-         
-                //// Spawn new row of bricks
-                //brickSpawner.SpawnBricks(ballMovement.presentBallCount);
-                //}
-
+                
 
 
             }

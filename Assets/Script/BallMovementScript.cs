@@ -72,6 +72,7 @@ public class BallMovementScript : MonoBehaviour
 
             if (useLine)
             {
+                line.positionCount = 3;
                 line.SetPosition(0, transform.position);
                 line.SetPosition(1, ray.point);
                 line.SetPosition(2, ray.point + reflactpos.normalized * 2f);
@@ -94,6 +95,7 @@ public class BallMovementScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
         if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue !=0)
         {
+            
 
             StartCoroutine(Shootball());
             isMoving = true;
@@ -170,13 +172,10 @@ public class BallMovementScript : MonoBehaviour
     //Ball multiplier detection
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (collision.gameObject.CompareTag("Multiplier"))
         {
             _ballcount++;
             Debug.Log("  Ball Count: " + _ballcount);
         }
     }
-
 }

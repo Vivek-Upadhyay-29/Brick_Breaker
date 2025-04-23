@@ -1,4 +1,3 @@
-
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class Brick : MonoBehaviour
     public int health = 1;
     public TextMeshPro valueText;
     public GameObject ParentObj;
+    
     public void SetValue(int value)
     {
         health = value;
