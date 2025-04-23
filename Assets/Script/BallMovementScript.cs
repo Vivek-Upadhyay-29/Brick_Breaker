@@ -9,8 +9,8 @@ public class BallMovementScript : MonoBehaviour
     private Rigidbody2D rb;
     public Slider slider;
     [SerializeField] private float speed = 1;
-    [SerializeField] private float sliderValue;
-    private Vector2 startPos;
+    public float sliderValue;
+  
     private bool isIdle;
     public bool isMoving;
     private Vector2 newStartPos;
@@ -33,7 +33,10 @@ public class BallMovementScript : MonoBehaviour
     public int _ballcount = 1;
     [SerializeField] SpriteRenderer sprite;
     public int presentBallCount;
+    public bool canForceDownBall = true;  //yah wala brick down wala button kaam karega ya nahi ye check karne k liye hai
     public BrickSpawner brickSpawner;
+    public Vector2 startPos;
+
     void Start()
     {
         Screen.orientation = ScreenOrientation.LandscapeLeft;
@@ -43,6 +46,7 @@ public class BallMovementScript : MonoBehaviour
         startPos = transform.position;
         line.enabled = false;
         _isCloned = false;
+
     }
 
     public void RayCheck()
@@ -99,11 +103,7 @@ public class BallMovementScript : MonoBehaviour
 
             StartCoroutine(Shootball());
             isMoving = true;
-            if (isMoving)
-            {
-                // line.enabled = false;
-                Debug.Log(gameObject.name);
-            }
+            canForceDownBall = false;
 
             rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
 
@@ -149,6 +149,7 @@ public class BallMovementScript : MonoBehaviour
             slider.value = 0;
             transform.position = new Vector2(newStartPos.x, newStartPos.y);
             isMoving = false;
+            canForceDownBall = true;
             Debug.Log("Position Reset");
             line.transform.position = transform.position;
             

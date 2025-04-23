@@ -397,7 +397,9 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  canForceDownBall: 1
   brickSpawner: {fileID: 0}
+  startPos: {x: 0, y: 0}
 --- !u!1 &62379878
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballMovementScript: {fileID: 799860581}
-  generator: {fileID: 680323716}
+  brickSpawner: {fileID: 1556944713}
   PooledCollision: {fileID: 0}
   mainBall: {fileID: 799860580}
 --- !u!1 &233510872
@@ -1022,7 +1024,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05529213, y: -2.7225246}
+  m_Offset: {x: 0.05529213, y: -2.804357}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1033,7 +1035,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.266757, y: 0.6489608}
+  m_Size: {x: 4.266757, y: 0.485296}
   m_EdgeRadius: 0
 --- !u!1 &299900044
 GameObject:
@@ -1794,7 +1796,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0024414062}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 0, y: 0.005127}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510433250
@@ -2074,6 +2076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1258848943}
   nextPanel: {fileID: 1924362057}
+  brickSpawner: {fileID: 0}
 --- !u!1 &616806527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,7 +2428,9 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  canForceDownBall: 1
   brickSpawner: {fileID: 0}
+  startPos: {x: 0, y: 0}
 --- !u!120 &671224448
 LineRenderer:
   serializedVersion: 2
@@ -2739,6 +2744,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1924362057}
   nextPanel: {fileID: 1258848943}
+  brickSpawner: {fileID: 0}
 --- !u!114 &695805921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2974,6 +2980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 510433248}
   nextPanel: {fileID: 1258848943}
+  brickSpawner: {fileID: 1556944713}
 --- !u!114 &768438067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3020,7 +3027,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 768438066}
         m_TargetAssemblyTypeName: UIHandler, Assembly-CSharp
-        m_MethodName: NextPanel
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3267,7 +3274,9 @@ MonoBehaviour:
   _ballcount: 3
   sprite: {fileID: 799860582}
   presentBallCount: 0
+  canForceDownBall: 1
   brickSpawner: {fileID: 1556944713}
+  startPos: {x: 0, y: 0}
 --- !u!212 &799860582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4045,7 +4054,9 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  canForceDownBall: 1
   brickSpawner: {fileID: 0}
+  startPos: {x: 0, y: 0}
 --- !u!120 &963671079
 LineRenderer:
   serializedVersion: 2
@@ -4575,6 +4586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1198891479}
   nextPanel: {fileID: 1258848943}
+  brickSpawner: {fileID: 0}
 --- !u!1001 &1180077963
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5267,6 +5279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 510433248}
   nextPanel: {fileID: 1198891479}
+  brickSpawner: {fileID: 0}
 --- !u!114 &1527388042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5631,10 +5644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickPrefabs: []
-  spacing: 0.8
+  spacing: 0.58
   spawnedBricks: []
   ballMovementScript: {fileID: 799860581}
-  columns: 5
+  columns: 7
 --- !u!4 &1556944714
 Transform:
   m_ObjectHideFlags: 0
@@ -5644,7 +5657,7 @@ Transform:
   m_GameObject: {fileID: 1556944712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.56, y: 3.53, z: 0}
+  m_LocalPosition: {x: -1.7, y: 4.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5922,6 +5935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1924362057}
   nextPanel: {fileID: 1198891479}
+  brickSpawner: {fileID: 0}
 --- !u!114 &1736944554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6863,6 +6877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1924362057}
   nextPanel: {fileID: 1258848943}
+  brickSpawner: {fileID: 0}
 --- !u!114 &1866066239
 MonoBehaviour:
   m_ObjectHideFlags: 0

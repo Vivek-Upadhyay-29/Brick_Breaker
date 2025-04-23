@@ -15,32 +15,29 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (collision.gameObject.tag == "Multiplier" || collision.gameObject.tag =="clone" || collision.gameObject.tag == "brick")
         {
-      
-            //  Scene currentScene = SceneManager.GetActiveScene();
-            // SceneManager.LoadScene(currentScene.name);
-             gameOverpanel.SetActive(true);
-            Debug.Log("Game Over");
-            // for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
-            // {
-            //     GameObject brick = BrickPool.Instance.GetPooledBrick();
-            //     brick.SetActive(false);
-            //
-            // }
-            
-            brickSpawner.SpawnBrickRow();
-            // StartCoroutine(EndGame());
+            //foreach (GameObject brick in brickSpawner.spawnedBricks)
+            //{
+            //    brick.SetActive(false);
+            //}
+
+
+            //brickSpawner.spawnedBricks.Clear();
+            //brickSpawner.SpawnBrickRow();
+            //gameOverpanel.SetActive(true);
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+            StartCoroutine(WaitAndLoad());
+            gameOverpanel.SetActive(true);
 
         }
     }
 
-    // IEnumerator EndGame()
-    // {
-    //      Scene currentScene = SceneManager.GetActiveScene();
-    //     SceneManager.LoadScene(currentScene.name);
-    //     yield return new WaitForSeconds(0.2f);
-    //     gameOverpanel.SetActive(true);
-    //
-    // }
+
+    private IEnumerator WaitAndLoad()
+    {
+        yield return new WaitForSeconds(1f);
+       
+    }
 
     private void OnTriggerStay2D(Collider2D other)
     {
