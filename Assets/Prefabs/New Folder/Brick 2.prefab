@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8683295063261661421}
   - component: {fileID: 7868595554558111501}
   - component: {fileID: 7800931170852511444}
-  - component: {fileID: 6974164028796166440}
+  - component: {fileID: 459024057155482278}
   m_Layer: 0
   m_Name: GameObject
-  m_TagString: clone
+  m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,7 +218,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.8440804, y: 3.8163378}
   m_EdgeRadius: 0
---- !u!114 &6974164028796166440
+--- !u!114 &459024057155482278
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,9 +230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cc854cb17494c11aae834e6b325055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: 0
-  hitText: {fileID: 7868595554558111501}
-  isBallMultiplier: 0
+  health: 1
+  valueText: {fileID: 7868595554558111501}
+  ParentObj: {fileID: 7492113641680224173}
 --- !u!1 &7492113641680224173
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 3971932201739371149}
   m_Layer: 0
   m_Name: Brick 2
-  m_TagString: Untagged
+  m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

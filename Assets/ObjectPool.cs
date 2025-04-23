@@ -20,7 +20,7 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         pooledObjects = new List<GameObject>();
-        GameObject tmp;
+   
         for(int i = 0; i < amountToPool; i++)
         {
             CreateNewObject();

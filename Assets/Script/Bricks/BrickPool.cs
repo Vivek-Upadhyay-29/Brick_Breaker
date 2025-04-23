@@ -25,7 +25,7 @@ public class BrickPool : MonoBehaviour
          }
      }
 
-     public GameObject GetPooledBrick()
+    public GameObject GetPooledBrick()
      {
          for (int i = 0; i <= poolSize; i++)
          {
@@ -36,7 +36,11 @@ public class BrickPool : MonoBehaviour
                  return brickPool[i];
              }
          }
-         return null;
-     
-     }
+        return null;
+        //FOR Expanding
+        //GameObject tmpBrick = Instantiate(brickPrefab);
+        //tmpBrick.SetActive(false);
+        //brickPool.Add(tmpBrick);
+        //return tmpBrick;
+    }
 }

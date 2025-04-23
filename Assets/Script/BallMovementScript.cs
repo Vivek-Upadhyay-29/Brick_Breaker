@@ -33,7 +33,7 @@ public class BallMovementScript : MonoBehaviour
     public int _ballcount = 1;
     [SerializeField] SpriteRenderer sprite;
     public int presentBallCount;
-
+    public BrickSpawner brickSpawner;
     void Start()
     {
 
