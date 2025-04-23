@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick
       objectReference: {fileID: 0}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -43,6 +51,14 @@ PrefabInstance:
     - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_LocalPosition.x

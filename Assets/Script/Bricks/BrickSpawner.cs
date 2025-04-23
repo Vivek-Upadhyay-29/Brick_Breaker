@@ -18,23 +18,30 @@ public class BrickSpawner : MonoBehaviour
 
     public void SpawnBrickRow()
     {
-     
-        for (int i = 0; i < columns; i++)
+
+        for (int i = 0; i < 2; i++)
+        {
+            
          for (int j = 0; j < columns; j++)
          {
-            int brickValue = Random.Range(1, ballMovementScript._ballcount +8);
+            int brickValue = Random.Range(0, ballMovementScript._ballcount +8);
             
-            Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);
+            Vector3 spawnPos = transform.position + new Vector3(j * spacing, i*-spacing, 0);
             
             GameObject brickObj = BrickPool.Instance.GetPooledBrick();
             brickObj.transform.position = spawnPos;
             spawnedBricks.Add(brickObj);
             Brick brickComponent = brickObj.GetComponent<Brick>();
+
             brickComponent.SetValue(brickValue);
-            brickObj.SetActive(true);
+            
+            //this for spawning empty  obj
+            brickObj.SetActive(brickValue != 0);
          }
+        }
         
     }
+    
 
     public void MoveDownAndAddNewRow()
     {
@@ -44,25 +51,32 @@ public class BrickSpawner : MonoBehaviour
 
     IEnumerator ShiftAndAdd()
     {
-        // Move brick down
-        // for (int i = 0; i < spawnedBricks.Count; i++)
-        // {
-        //     Vector3 spawnPos = spawnedBricks[i].transform.position + new Vector3(0,-spacing, 0);
-        //     spawnedBricks[i].transform.position = spawnPos;
-        //     // spawnedBricks[i].transform.position += Vector3.down * spacing;
-        // }
-        //  
-        // SpawnBrickRow();
 
         for (int i = 0; i < spawnedBricks.Count; i++)
         {
             StartCoroutine(TileDown(spawnedBricks[i].transform));
         }
         yield return new WaitForSeconds(0.7f);
-        SpawnBrickRow();
+        NewLineSpawner();
     }
 
-IEnumerator TileDown(Transform startPos)
+    private void NewLineSpawner()
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            int brickValue = Random.Range(0, ballMovementScript._ballcount +8);
+            
+            Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);
+            
+            GameObject brickObj = BrickPool.Instance.GetPooledBrick();
+            brickObj.transform.position = spawnPos;
+            spawnedBricks.Add(brickObj);
+            Brick brickComponent = brickObj.GetComponent<Brick>();
+            brickComponent.SetValue(brickValue);
+            brickObj.SetActive(brickValue != 0);
+        } 
+    }
+     IEnumerator TileDown(Transform startPos)
     {
         Vector3 desiredPos = startPos.position + new Vector3(0, -spacing, 0);
         float elapsedTime = 0f;
