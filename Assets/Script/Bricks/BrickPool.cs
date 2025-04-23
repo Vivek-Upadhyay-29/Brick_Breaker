@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -36,11 +35,6 @@ public class BrickPool : MonoBehaviour
                  return brickPool[i];
              }
          }
-        return null;
-        //FOR Expanding
-        //GameObject tmpBrick = Instantiate(brickPrefab);
-        //tmpBrick.SetActive(false);
-        //brickPool.Add(tmpBrick);
-        //return tmpBrick;
+         return null;
     }
 }

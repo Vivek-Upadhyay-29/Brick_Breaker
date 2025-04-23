@@ -22,12 +22,11 @@ public class Ground : MonoBehaviour
             {
                 ballMovement.ballClone.Clear();
                 ballMovement.presentBallCount = 0;
-              //  generator.MoveDown(); for previous instanciate down
+              //  generator.MoveDown(); for previous instantiate down
                 cloneCount = 0;
 
-                //// new wala
-                //brickSpawner.MoveBricksDown(1);
-                brickSpawner.MoveDownAndAddNewRow();
+                // new wala
+              brickSpawner.MoveDownAndAddNewRow();
                 
 
 

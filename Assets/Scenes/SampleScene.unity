@@ -397,6 +397,7 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  brickSpawner: {fileID: 0}
 --- !u!1 &62379878
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,8 +430,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1273136368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 94.3458, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -955,7 +956,7 @@ GameObject:
   - component: {fileID: 296656293}
   m_Layer: 0
   m_Name: EndTrigger
-  m_TagString: Untagged
+  m_TagString: EndTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -988,6 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverpanel: {fileID: 510433248}
+  brickSpawner: {fileID: 1556944713}
 --- !u!61 &296656294
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1004,7 +1006,7 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 2
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1020,7 +1022,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05529213, y: -2.6935763}
+  m_Offset: {x: 0.05529213, y: -2.7225246}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1031,7 +1033,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.266757, y: 0.7068579}
+  m_Size: {x: 4.266757, y: 0.6489608}
   m_EdgeRadius: 0
 --- !u!1 &299900044
 GameObject:
@@ -2102,8 +2104,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickPool: []
-  brickPrefab: {fileID: 7492113641680224173, guid: de9ecfe20b42245ef84a81766e935911, type: 3}
-  poolSize: 40
+  brickPrefab: {fileID: 2368196302896728507, guid: cf86b1baad12c44b28333704d17424ca, type: 3}
+  poolSize: 400
 --- !u!4 &616806529
 Transform:
   m_ObjectHideFlags: 0
@@ -2423,6 +2425,7 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  brickSpawner: {fileID: 0}
 --- !u!120 &671224448
 LineRenderer:
   serializedVersion: 2
@@ -2641,7 +2644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &680323716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3261,9 +3264,10 @@ MonoBehaviour:
   useLine: 1
   ballClone: []
   _isCloned: 0
-  _ballcount: 6
+  _ballcount: 2
   sprite: {fileID: 799860582}
   presentBallCount: 0
+  brickSpawner: {fileID: 1556944713}
 --- !u!212 &799860582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3326,7 +3330,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.007, y: -3.117, z: 0}
-  m_LocalScale: {x: 0.3320336, y: 0.3320336, z: 0.3320336}
+  m_LocalScale: {x: 0.22827317, y: 0.22827317, z: 0.22827317}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -3409,7 +3413,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Positions:
-  - {x: 0, y: -2.97, z: 0}
+  - {x: 0, y: -3, z: 0}
   - {x: 0, y: 0, z: 1}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
@@ -3436,7 +3440,7 @@ LineRenderer:
       key1: {r: 1, g: 0.29403237, b: 0.29403237, a: 1}
       key2: {r: 0.9622642, g: 0.086240634, b: 0.086240634, a: 0}
       key3: {r: 1, g: 0, b: 0, a: 0}
-      key4: {r: 0.9622642, g: 0.086240634, b: 0.086240634, a: 0}
+      key4: {r: 1, g: 0.95704347, b: 0.95704347, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
@@ -3444,7 +3448,7 @@ LineRenderer:
       ctime1: 33346
       ctime2: 42020
       ctime3: 48766
-      ctime4: 65535
+      ctime4: 62644
       ctime5: 0
       ctime6: 0
       ctime7: 0
@@ -3458,7 +3462,7 @@ LineRenderer:
       atime7: 0
       m_Mode: 0
       m_ColorSpace: 0
-      m_NumColorKeys: 4
+      m_NumColorKeys: 5
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
@@ -3687,7 +3691,7 @@ RectTransform:
   m_Father: {fileID: 1632458781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4041,6 +4045,7 @@ MonoBehaviour:
   _ballcount: 0
   sprite: {fileID: 0}
   presentBallCount: 0
+  brickSpawner: {fileID: 0}
 --- !u!120 &963671079
 LineRenderer:
   serializedVersion: 2
@@ -4339,6 +4344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generator: {fileID: 680323716}
   ballMovement: {fileID: 799860581}
+  brickSpawner: {fileID: 1556944713}
   cloneCount: 0
 --- !u!1 &1157794099
 GameObject:
@@ -4687,7 +4693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1198891480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4765,7 +4771,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1210689145
 Transform:
   m_ObjectHideFlags: 0
@@ -4900,7 +4906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1258848944
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5504,7 +5510,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1538114932
 Transform:
   m_ObjectHideFlags: 0
@@ -5608,7 +5614,7 @@ GameObject:
   m_Layer: 0
   m_Name: Brickspawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5624,14 +5630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd271e8e64dac4769948b8ef6c744073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ballMovement: {fileID: 0}
-  powerUpChance: 0.1
+  brickPrefabs: []
+  spacing: 0.8
+  spawnedBricks: []
+  ballMovementScript: {fileID: 799860581}
+  columns: 5
 --- !u!4 &1556944714
 Transform:
   m_ObjectHideFlags: 0
@@ -5641,7 +5644,7 @@ Transform:
   m_GameObject: {fileID: 1556944712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 187.60034, y: 873.2821, z: 5.618283}
+  m_LocalPosition: {x: -1.56, y: 3.53, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6040,7 +6043,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1745377287
 Transform:
   m_ObjectHideFlags: 0
@@ -6672,7 +6675,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1829361786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6680,19 +6683,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1829361785}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd271e8e64dac4769948b8ef6c744073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns:
-  - {fileID: 1829361787}
-  - {fileID: 1538114932}
-  - {fileID: 1915754682}
-  - {fileID: 1745377287}
-  - {fileID: 1210689145}
-  ballMovement: {fileID: 799860581}
-  powerUpChance: 0.1
+  brickPrefabs: []
+  spacing: 0.8
+  spawnedBricks: []
+  ballMovementScript: {fileID: 0}
+  columns: 5
 --- !u!4 &1829361787
 Transform:
   m_ObjectHideFlags: 0
@@ -7106,7 +7106,7 @@ GameObject:
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1915754682
 Transform:
   m_ObjectHideFlags: 0
@@ -7500,6 +7500,7 @@ SceneRoots:
   - {fileID: 680323717}
   - {fileID: 296656292}
   - {fileID: 616806529}
+  - {fileID: 1556944714}
   - {fileID: 1829361787}
   - {fileID: 1538114932}
   - {fileID: 1915754682}
@@ -7510,4 +7511,3 @@ SceneRoots:
   - {fileID: 1834062459}
   - {fileID: 75725038}
   - {fileID: 1180077963}
-  - {fileID: 1556944714}

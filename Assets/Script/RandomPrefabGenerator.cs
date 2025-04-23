@@ -40,17 +40,12 @@ public class RandomPrefabGenerator : MonoBehaviour
 
     IEnumerator PosChange()
     {
-        yield return new WaitForSeconds(0.5f);
-
-
+        yield return new WaitForSeconds(0.5f); 
         for (int i = 0; i < prefabs.Count; i++)
         {
             Vector3 newPos = prefabs[i].transform.position + new Vector3(0, -spacing, 0);
             prefabs[i].transform.position = newPos;
-
         }
-
-        
         //this for adding new row when grid moves down
         for (int j = 0; j < 5; j++)
         {

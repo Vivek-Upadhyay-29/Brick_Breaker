@@ -13,55 +13,67 @@ public class BrickSpawner : MonoBehaviour
 
     void Start()
     {
-        SpawnBrickRow(); 
+        SpawnBrickRow();
     }
+
     public void SpawnBrickRow()
     {
-       
-
-        for (int j = 0; j < columns; j++)
-        {
-            int brickValue = Random.Range(0, ballMovementScript.presentBallCount +10);
-
+     
+        for (int i = 0; i < columns; i++)
+         for (int j = 0; j < columns; j++)
+         {
+            int brickValue = Random.Range(1, ballMovementScript._ballcount +8);
+            
             Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);
-
-            //GameObject brickObj = Instantiate(brickPrefabs[randomIndex], spawnPos, Quaternion.identity);
+            
             GameObject brickObj = BrickPool.Instance.GetPooledBrick();
-           brickObj.SetActive(true);
-         brickObj.transform.position = spawnPos;
-
-           Brick brickComponent = brickObj.GetComponent<Brick>();
-        brickComponent.SetValue(brickValue);
-           if (brickComponent != null)
-            {
-                
-                spawnedBricks.Add(brickObj);
-                brickObj.transform.position = spawnPos;
-                int brickValue = Random.Range(0, ballMovementScript.presentBallCount +10);
-               
-                brickComponent.SetValue(brickValue);
-                brickObj.SetActive(true);
-            }
-         
-        }
+            brickObj.transform.position = spawnPos;
+            spawnedBricks.Add(brickObj);
+            Brick brickComponent = brickObj.GetComponent<Brick>();
+            brickComponent.SetValue(brickValue);
+            brickObj.SetActive(true);
+         }
+        
     }
-
 
     public void MoveDownAndAddNewRow()
     {
         StartCoroutine(ShiftAndAdd());
+        
     }
 
     IEnumerator ShiftAndAdd()
     {
-        yield return new WaitForSeconds(0.5f);
+        // Move brick down
+        // for (int i = 0; i < spawnedBricks.Count; i++)
+        // {
+        //     Vector3 spawnPos = spawnedBricks[i].transform.position + new Vector3(0,-spacing, 0);
+        //     spawnedBricks[i].transform.position = spawnPos;
+        //     // spawnedBricks[i].transform.position += Vector3.down * spacing;
+        // }
+        //  
+        // SpawnBrickRow();
 
-        foreach (GameObject b in spawnedBricks)
+        for (int i = 0; i < spawnedBricks.Count; i++)
         {
-            if (b != null)
-                b.transform.position += Vector3.down * spacing;
+            StartCoroutine(TileDown(spawnedBricks[i].transform));
         }
+        yield return new WaitForSeconds(0.7f);
+        SpawnBrickRow();
+    }
 
-        SpawnBrickRow(); 
+IEnumerator TileDown(Transform startPos)
+    {
+        Vector3 desiredPos = startPos.position + new Vector3(0, -spacing, 0);
+        float elapsedTime = 0f;
+        float totalTime = 0.6f;
+        while (elapsedTime < totalTime)
+        {
+            startPos.position= Vector3.Lerp(startPos.position , desiredPos, elapsedTime / totalTime);
+            elapsedTime += Time.deltaTime;
+            Debug.Log(elapsedTime);
+            yield return null;
+        }
     }
 }
+

@@ -28,8 +28,5 @@ public class UIHandler : MonoBehaviour
         Debug.Log("Restart Game");
     }
 
-    public void QuitPanel()
-    {
-
-    }
+  
 }

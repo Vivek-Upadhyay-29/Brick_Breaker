@@ -36,7 +36,7 @@ public class BallMovementScript : MonoBehaviour
     public BrickSpawner brickSpawner;
     void Start()
     {
-
+        Screen.orientation = ScreenOrientation.LandscapeLeft;
         line = GetComponent<LineRenderer>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -45,7 +45,7 @@ public class BallMovementScript : MonoBehaviour
         _isCloned = false;
     }
 
-    public void FixedUpdate()
+    public void RayCheck()
 
     {
  
@@ -90,7 +90,7 @@ public class BallMovementScript : MonoBehaviour
 
     void Update()
     {
-        
+        RayCheck();
         sliderValue = slider.value;
         transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
         if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue !=0)

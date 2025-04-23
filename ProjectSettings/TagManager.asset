@@ -11,6 +11,8 @@ TagManager:
   - PlayerPrefab
   - cloneBall
   - Brick
+  - brick
+  - EndTrigger
   layers:
   - Default
   - TransparentFX
