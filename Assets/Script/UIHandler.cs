@@ -15,24 +15,27 @@ public class UIHandler : MonoBehaviour
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
     }
-    
 
 
 
+    public void Homebtn()
+    {
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+        {
+            if (brickSpawner.spawnedBricks[i]){
+                  
+                brickSpawner.spawnedBricks[i].SetActive(false);
+                  
+            }
+        }
+        brickSpawner.SpawnBrickRow();
+    }
     public void RestartPanel()
     {
-            // // currentPanel.SetActive(false);
-            // // nextPanel.SetActive(true);
-            //
-            // foreach (GameObject brick in brickSpawner.spawnedBricks)
-            // {
-            //     brick.SetActive(false);
-            // }
-            //
-            // brickSpawner.spawnedBricks.Clear();
-            // brickSpawner.SpawnBrickRow();
-            // currentPanel.SetActive(false);
-            //
+       
             AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
             for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
             {
