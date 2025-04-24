@@ -34,8 +34,15 @@ public class UIHandler : MonoBehaviour
             // currentPanel.SetActive(false);
             //
             AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+            for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+            {
+                if (brickSpawner.spawnedBricks[i]){
+                  
+                    brickSpawner.spawnedBricks[i].SetActive(false);
+                  
+                }
+            }
+            brickSpawner.SpawnBrickRow();
     }
  
     public void RestartGame()

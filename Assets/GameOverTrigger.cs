@@ -62,10 +62,19 @@ public class GameOverTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Multiplier") || collision.CompareTag("clone") || collision.CompareTag("brick"))
         {
-   
-            StartCoroutine(WaitAndLoad());
-          //  gameOverpanel.SetActive(true);
-           
+          //
+          //   StartCoroutine(WaitAndLoad());
+            gameOverpanel.SetActive(true);
+            
+          for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+          {
+              if (brickSpawner.spawnedBricks[i]){
+                  
+                  brickSpawner.spawnedBricks[i].SetActive(false);
+                  
+              }
+          }
+          brickSpawner.SpawnBrickRow();
         }
     }
     
