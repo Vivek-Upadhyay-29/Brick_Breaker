@@ -27,6 +27,7 @@ public class Brick : MonoBehaviour
                           valueText.text = "";
                  
             }
+            AudioMangerScript.Instance.PlayOneShot(AudioType.BALL);
                 //ParentObj.SetActive(false);
         }
     }

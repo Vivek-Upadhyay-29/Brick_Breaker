@@ -39,13 +39,14 @@ public class BallMovementScript : MonoBehaviour
 
     void Start()
     {
-        Screen.orientation = ScreenOrientation.LandscapeLeft;
+        Screen.orientation = ScreenOrientation.Portrait;
         line = GetComponent<LineRenderer>();
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         startPos = transform.position;
         line.enabled = false;
         _isCloned = false;
+        AudioMangerScript.Instance.BackgroundMusic(AudioType.BACKGROUND);
 
     }
 

@@ -12,13 +12,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick
       objectReference: {fileID: 0}
+    - target: {fileID: 3916616589412298185, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
     - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_fontSize
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_fontSizeBase
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+    - target: {fileID: 5222854091680201608, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7573526002173678828, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_Pivot.x
@@ -108,6 +128,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8557089707118170603, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 4002757827776970751}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -148,3 +172,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!212 &4002757827776970751 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3857818606997659889, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+  m_PrefabInstance: {fileID: 145556219186355982}
+  m_PrefabAsset: {fileID: 0}

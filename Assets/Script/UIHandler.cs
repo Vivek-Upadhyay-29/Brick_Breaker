@@ -11,6 +11,7 @@ public class UIHandler : MonoBehaviour
 
     public void NextPanel()
     {
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
     }
@@ -20,22 +21,33 @@ public class UIHandler : MonoBehaviour
 
     public void RestartPanel()
     {
-        // currentPanel.SetActive(false);
-        // nextPanel.SetActive(true);
-
-        foreach (GameObject brick in brickSpawner.spawnedBricks)
-        {
-            brick.SetActive(false);
-        }
-
-        brickSpawner.spawnedBricks.Clear();
-        brickSpawner.SpawnBrickRow();
-        currentPanel.SetActive(false);
+            // // currentPanel.SetActive(false);
+            // // nextPanel.SetActive(true);
+            //
+            // foreach (GameObject brick in brickSpawner.spawnedBricks)
+            // {
+            //     brick.SetActive(false);
+            // }
+            //
+            // brickSpawner.spawnedBricks.Clear();
+            // brickSpawner.SpawnBrickRow();
+            // currentPanel.SetActive(false);
+            //
+            AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
  
     public void RestartGame()
     {
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
        currentPanel.SetActive(false);
     }
 
+
+    public void QuitGame()
+    {
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+        Application.Quit();
+    }
 }

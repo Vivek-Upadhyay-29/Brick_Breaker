@@ -16,14 +16,27 @@ public class BallDownBtnScript : MonoBehaviour
     {
         if (ballMovementScript.isMoving)
         {
-            for (int i = 0; i < ballMovementScript.ballClone.Count; i++)
+            // for (int i = 0; i < ballMovementScript.ballClone.Count; i++)
+            // {
+            //     ballMovementScript.ballClone[i].SetActive(false);
+            // }
+            foreach (GameObject ball in ballMovementScript.ballClone)
             {
-                ballMovementScript.ballClone[i].SetActive(false);
+            if (ball.activeInHierarchy)
+            {
+                Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+                if (rb != null) rb.velocity = Vector2.zero;
+                ball.SetActive(false);
             }
-            ballMovementScript.ballClone.Clear();
-            brickSpawner.MoveDownAndAddNewRow();
+           }
+            
 
-            mainBall.transform.position = new Vector3(-0.007f, -3.117f, 0);
+            ballMovementScript.presentBallCount = 0;
+            ballMovementScript.isMoving = false;
+            ballMovementScript.slider.value = 0;
+            ballMovementScript.canForceDownBall = true;
+            mainBall.transform.position = ballMovementScript.startPos;
+            brickSpawner.MoveDownAndAddNewRow();
         }
     }
 }

@@ -10,8 +10,8 @@ public class BrickSpawner : MonoBehaviour
     public List<GameObject> spawnedBricks = new List<GameObject>();
     public BallMovementScript ballMovementScript;
     public int columns = 5;
-    [Range(1, 2)]
-    public float powerUpSpawnChance = 2f;
+    [Range(0, 1f)] public float powerUpSpawnChance = 1;
+
 
 
     void Start()
@@ -34,8 +34,8 @@ public class BrickSpawner : MonoBehaviour
             GameObject brickObj = BrickPool.Instance.GetPooledBrick();
             brickObj.transform.position = spawnPos;
             spawnedBricks.Add(brickObj);
+            
             Brick brickComponent = brickObj.GetComponent<Brick>();
-
             brickComponent.SetValue(brickValue);
             
             //this for spawning empty  obj
@@ -45,15 +45,16 @@ public class BrickSpawner : MonoBehaviour
                 if (Random.value < powerUpSpawnChance)
                 {
                     GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
+
                     if (powerUp != null)
                     {
-                        powerUp.transform.position = spawnPos + new Vector3(0, -0.2f, 0);
+                        powerUp.transform.SetParent(brickObj.transform); 
+                        powerUp.transform.localPosition = new Vector3(0, -0.2f, 0); 
                         powerUp.SetActive(true);
                     }
                 }
             }
         }
-        
     }
     
 
@@ -93,9 +94,11 @@ public class BrickSpawner : MonoBehaviour
             if (Random.value < powerUpSpawnChance)
             {
                 GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
+
                 if (powerUp != null)
                 {
-                    powerUp.transform.position = spawnPos + new Vector3(0, -0.2f, 0);
+                    powerUp.transform.SetParent(brickObj.transform); 
+                    powerUp.transform.localPosition = new Vector3(0, -0.2f, 0); 
                     powerUp.SetActive(true);
                 }
             }
@@ -113,6 +116,7 @@ public class BrickSpawner : MonoBehaviour
             Debug.Log(elapsedTime);
             yield return null;
         }
+        startPos.position = desiredPos;
     }
 }
 
