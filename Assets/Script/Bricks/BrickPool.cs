@@ -8,7 +8,14 @@ public class BrickPool : MonoBehaviour
      public GameObject brickPrefab;
      public int poolSize ;
 
-     void Awake()
+
+    [Header("Powerup")]
+    public GameObject powerUpPrefab;
+    public List<GameObject> powerUpPool = new List<GameObject>();
+    public int powerUpPoolSize = 5;
+
+
+    void Awake()
      {
          Instance = this;
      }
@@ -22,7 +29,15 @@ public class BrickPool : MonoBehaviour
              tmpBrick.SetActive(false);
              brickPool.Add(tmpBrick);
          }
-     }
+
+        for (int i = 0; i < powerUpPoolSize; i++)
+        {
+            GameObject obj = Instantiate(powerUpPrefab);
+            obj.SetActive(false);
+            powerUpPool.Add(obj);
+        }
+
+    }
 
     public GameObject GetPooledBrick()
      {
@@ -36,5 +51,14 @@ public class BrickPool : MonoBehaviour
              }
          }
          return null;
+    }
+    public GameObject GetPooledPowerUp()
+    {
+        foreach (var obj in powerUpPool)
+        {
+            if (!obj.activeInHierarchy)
+                return obj;
+        }
+        return null;
     }
 }

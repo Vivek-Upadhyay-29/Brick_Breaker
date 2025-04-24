@@ -2109,6 +2109,9 @@ MonoBehaviour:
   brickPool: []
   brickPrefab: {fileID: 2368196302896728507, guid: cf86b1baad12c44b28333704d17424ca, type: 3}
   poolSize: 400
+  powerUpPrefab: {fileID: 7125463545655657145, guid: c85d168349cba4fd090f57472755736d, type: 3}
+  powerUpPool: []
+  powerUpPoolSize: 50
 --- !u!4 &616806529
 Transform:
   m_ObjectHideFlags: 0
@@ -5648,6 +5651,7 @@ MonoBehaviour:
   spawnedBricks: []
   ballMovementScript: {fileID: 799860581}
   columns: 7
+  powerUpSpawnChance: 0.1
 --- !u!4 &1556944714
 Transform:
   m_ObjectHideFlags: 0
@@ -6707,6 +6711,7 @@ MonoBehaviour:
   spawnedBricks: []
   ballMovementScript: {fileID: 0}
   columns: 5
+  powerUpSpawnChance: 0.1
 --- !u!4 &1829361787
 Transform:
   m_ObjectHideFlags: 0

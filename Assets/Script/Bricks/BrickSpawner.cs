@@ -10,6 +10,9 @@ public class BrickSpawner : MonoBehaviour
     public List<GameObject> spawnedBricks = new List<GameObject>();
     public BallMovementScript ballMovementScript;
     public int columns = 5;
+    [Range(1, 2)]
+    public float powerUpSpawnChance = 2f;
+
 
     void Start()
     {
@@ -37,7 +40,18 @@ public class BrickSpawner : MonoBehaviour
             
             //this for spawning empty  obj
             brickObj.SetActive(brickValue != 0);
-         }
+
+                //this for powerup
+                if (Random.value < powerUpSpawnChance)
+                {
+                    GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
+                    if (powerUp != null)
+                    {
+                        powerUp.transform.position = spawnPos + new Vector3(0, -0.2f, 0);
+                        powerUp.SetActive(true);
+                    }
+                }
+            }
         }
         
     }
@@ -73,8 +87,19 @@ public class BrickSpawner : MonoBehaviour
             spawnedBricks.Add(brickObj);
             Brick brickComponent = brickObj.GetComponent<Brick>();
             brickComponent.SetValue(brickValue);
+            //for empty obj
             brickObj.SetActive(brickValue != 0);
-        } 
+            // for powerup
+            if (Random.value < powerUpSpawnChance)
+            {
+                GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
+                if (powerUp != null)
+                {
+                    powerUp.transform.position = spawnPos + new Vector3(0, -0.2f, 0);
+                    powerUp.SetActive(true);
+                }
+            }
+        }
     }
      IEnumerator TileDown(Transform startPos)
     {
