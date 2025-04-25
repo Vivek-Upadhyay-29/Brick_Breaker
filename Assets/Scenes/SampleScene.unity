@@ -926,8 +926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballMovementScript: {fileID: 799860581}
   brickSpawner: {fileID: 1556944713}
-  PooledCollision: {fileID: 0}
+  PooledCollision: {fileID: 8210587697434109744, guid: 09afdbaadbd95498b9e251514e705ae2, type: 3}
   mainBall: {fileID: 799860580}
+  resetDebounceTime: 0.5
 --- !u!1 &233510872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,7 +3710,7 @@ MonoBehaviour:
   useLine: 1
   ballClone: []
   _isCloned: 0
-  _ballcount: 3
+  _ballcount: 2
   sprite: {fileID: 799860582}
   presentBallCount: 0
   canForceDownBall: 1
@@ -6112,6 +6113,7 @@ MonoBehaviour:
   minEmptyChance: 0.2
   emptyChanceDecreaseRate: 0.05
   multiplierSpawnChanceZeroValue: 0.6
+  powerUpVerticalOffset: -0.2
 --- !u!4 &1556944714
 Transform:
   m_ObjectHideFlags: 0
@@ -7207,6 +7209,7 @@ MonoBehaviour:
   minEmptyChance: 0.2
   emptyChanceDecreaseRate: 0.05
   multiplierSpawnChanceZeroValue: 0.6
+  powerUpVerticalOffset: -0.1
 --- !u!4 &1829361787
 Transform:
   m_ObjectHideFlags: 0
