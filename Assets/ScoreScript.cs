@@ -1,0 +1,49 @@
+using UnityEngine;
+using TMPro;
+
+public class ScoreScript : MonoBehaviour
+{
+    public ScoreMangaer scoreManager;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+    [SerializeField]private int newScore;
+    public static ScoreScript Instance;
+    
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+
+    void Start()
+    {
+        Reset();
+    }
+    // Update is called once per frame
+    public void Incrementer()
+    {
+        scoreManager.score += 1;
+        scoreText.text = scoreManager.score.ToString();
+
+        if (scoreManager.score > scoreManager.highscore)
+        {
+            scoreManager.highscore = scoreManager.score;
+            highScoreText.text = scoreManager.highscore.ToString();
+        }
+    }
+
+    public void Reset()
+    {
+        scoreManager.score = 0;
+        scoreText.text = scoreManager.score.ToString();
+       
+        
+    }
+}

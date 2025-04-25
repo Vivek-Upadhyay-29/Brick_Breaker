@@ -13,6 +13,8 @@ TagManager:
   - Brick
   - brick
   - EndTrigger
+  - HighscorePanel
+  - WallCollider
   layers:
   - Default
   - TransparentFX

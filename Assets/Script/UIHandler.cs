@@ -22,6 +22,7 @@ public class UIHandler : MonoBehaviour
     {
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
+        ScoreScript.Instance.Reset();
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
         for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
         {
@@ -35,7 +36,7 @@ public class UIHandler : MonoBehaviour
     }
     public void RestartPanel()
     {
-       
+        ScoreScript.Instance.Reset();
             AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
             for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
             {

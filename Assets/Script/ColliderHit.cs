@@ -45,14 +45,14 @@ public class ColliderHit : MonoBehaviour
                     
 
                     //prefab ke sath clash horaha tha islea disaBLE KIYA
-                    //scoreManager.score += 1;
-                    //scoreText.text = scoreManager.score.ToString();
-
-                    //if (scoreManager.score > scoreManager.highscore)
-                    //{
-                    //    scoreManager.highscore = scoreManager.score;
-                    //    highScoreText.text = scoreManager.highscore.ToString();
-                    //}
+                    // scoreManager.score += 1;
+                    // scoreText.text = scoreManager.score.ToString();
+                    //
+                    // if (scoreManager.score > scoreManager.highscore)
+                    // {
+                    //     scoreManager.highscore = scoreManager.score;
+                    //     highScoreText.text = scoreManager.highscore.ToString();
+                    // }
                 }
                 
                 

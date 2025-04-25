@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AddBall : MonoBehaviour
 {
+    public float rotationSpeed = 100f; 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") || collision.gameObject.tag == "cloneBall" || collision.CompareTag("brick")) 
@@ -12,4 +13,9 @@ public class AddBall : MonoBehaviour
             gameObject.SetActive(false); // Deactivate the power-up after the ball collects it
         }
     }
+    void Update() {
+        
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+    }
+
 }

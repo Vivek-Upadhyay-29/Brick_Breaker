@@ -14,7 +14,8 @@ public enum AudioType
     BACKGROUND,
     BOMB,
     BALL,
-    BUTTON
+    BUTTON,
+    WALLHIT
 }
 public class AudioMangerScript : MonoBehaviour
 {

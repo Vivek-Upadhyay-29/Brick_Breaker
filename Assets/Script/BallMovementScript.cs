@@ -141,6 +141,10 @@ public class BallMovementScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("WallCollider"))
+        {
+            AudioMangerScript.Instance.PlayOneShot(AudioType.WALLHIT);
+        }
 
         if (collision.gameObject.CompareTag("ground"))
         {

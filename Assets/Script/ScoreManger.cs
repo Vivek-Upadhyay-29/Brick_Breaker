@@ -7,7 +7,7 @@ public class ScoreMangaer : ScriptableObject
 {
 
 
-    public int score ;
+    public int score = 0;
     public int highscore;
 
 
@@ -19,7 +19,6 @@ public class ScoreMangaer : ScriptableObject
             highscore = score;
         }
     }
-
-
+    
 }
 
