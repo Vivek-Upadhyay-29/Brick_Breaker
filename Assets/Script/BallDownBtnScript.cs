@@ -1,46 +1,100 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallDownBtnScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-
     public BallMovementScript ballMovementScript;
     public BrickSpawner brickSpawner;
-    public pooledCollision PooledCollision;
+    public pooledCollision PooledCollision; // Note: Currently unused in BallDown()
     public GameObject mainBall;
-    // Update is called once per frame
+    private bool isResetting = false;
+    public float resetDebounceTime = 0.5f;
+
     public void BallDown()
     {
-        if (ballMovementScript.isMoving)
+        if (!isResetting && ballMovementScript != null && ballMovementScript.isMoving && brickSpawner != null && mainBall != null)
         {
-            // for (int i = 0; i < ballMovementScript.ballClone.Count; i++)
-            // {
-            //     ballMovementScript.ballClone[i].SetActive(false);
-            // }
+            isResetting = true;
+
+            // Deactivate and stop all clone balls
             foreach (GameObject ball in ballMovementScript.ballClone)
             {
-            if (ball.activeInHierarchy)
-            {
-                Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-                if (rb != null) rb.velocity = Vector2.zero;
-                ball.SetActive(false);
+                if (ball != null && ball.activeInHierarchy)
+                {
+                    Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+                    if (rb != null) rb.velocity = Vector2.zero;
+                    ball.SetActive(false);
+                }
             }
-           }
-            
 
             ballMovementScript.presentBallCount = 0;
             ballMovementScript.isMoving = false;
             ballMovementScript.slider.value = 0;
             ballMovementScript.canForceDownBall = true;
             mainBall.transform.position = ballMovementScript.startPos;
+
             brickSpawner.MoveDownAndAddNewRow();
+
+            // Optional: Add logic to reset PooledCollision if needed
+
+            // Debounce the button
+            Invoke(nameof(ResetResettingFlag), resetDebounceTime);
+        }
+        else if (ballMovementScript == null || brickSpawner == null || mainBall == null)
+        {
+            Debug.LogError("BallDownBtnScript: One or more references (ballMovementScript, brickSpawner, mainBall) are not assigned in the Inspector!");
         }
     }
-}
 
+    private void ResetResettingFlag()
+    {
+        isResetting = false;
+    }
+}
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+
+//public class BallDownBtnScript : MonoBehaviour
+//{
+//    // Start is called before the first frame update
+
+
+//    public BallMovementScript ballMovementScript;
+//    public BrickSpawner brickSpawner;
+//    public pooledCollision PooledCollision;
+//    public GameObject mainBall;
+//    // Update is called once per frame
+//    public void BallDown()
+//    {
+//        if (ballMovementScript.isMoving)
+//        {
+//            // for (int i = 0; i < ballMovementScript.ballClone.Count; i++)
+//            // {
+//            //     ballMovementScript.ballClone[i].SetActive(false);
+//            // }
+//            foreach (GameObject ball in ballMovementScript.ballClone)
+//            {
+//            if (ball.activeInHierarchy)
+//            {
+//                Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+//                if (rb != null) rb.velocity = Vector2.zero;
+//                ball.SetActive(false);
+//            }
+//           }
+
+
+//            ballMovementScript.presentBallCount = 0;
+//            ballMovementScript.isMoving = false;
+//            ballMovementScript.slider.value = 0;
+//            ballMovementScript.canForceDownBall = true;
+//            mainBall.transform.position = ballMovementScript.startPos;
+//            brickSpawner.MoveDownAndAddNewRow();
+//        }
+//    }
+//}
+
+
+//up ma
 
 //using System.Collections;
 //using System.Collections.Generic;

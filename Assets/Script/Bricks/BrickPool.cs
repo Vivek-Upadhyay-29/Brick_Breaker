@@ -41,7 +41,7 @@ public class BrickPool : MonoBehaviour
 
     public GameObject GetPooledBrick()
      {
-         for (int i = 0; i <= poolSize; i++)
+         for (int i = 0; i < poolSize; i++)
          {
 
              

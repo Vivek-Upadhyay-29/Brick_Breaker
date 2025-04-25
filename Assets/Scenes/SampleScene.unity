@@ -2407,10 +2407,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brickPool: []
   brickPrefab: {fileID: 2368196302896728507, guid: cf86b1baad12c44b28333704d17424ca, type: 3}
-  poolSize: 400
+  poolSize: 200
   powerUpPrefab: {fileID: 7125463545655657145, guid: c85d168349cba4fd090f57472755736d, type: 3}
   powerUpPool: []
-  powerUpPoolSize: 50
+  powerUpPoolSize: 100
 --- !u!4 &616806529
 Transform:
   m_ObjectHideFlags: 0
@@ -6107,7 +6107,11 @@ MonoBehaviour:
   spawnedBricks: []
   ballMovementScript: {fileID: 799860581}
   columns: 7
-  powerUpSpawnChance: 1
+  powerUpSpawnChance: 0.16
+  initialEmptyChance: 0.7
+  minEmptyChance: 0.2
+  emptyChanceDecreaseRate: 0.05
+  multiplierSpawnChanceZeroValue: 0.6
 --- !u!4 &1556944714
 Transform:
   m_ObjectHideFlags: 0
@@ -6667,6 +6671,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757563308}
   m_CullTransparentMesh: 1
+--- !u!1 &1763813385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1763813386}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1763813386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763813385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7, y: 4.155, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780747765
 GameObject:
   m_ObjectHideFlags: 0
@@ -7168,6 +7203,10 @@ MonoBehaviour:
   ballMovementScript: {fileID: 0}
   columns: 5
   powerUpSpawnChance: 0.1
+  initialEmptyChance: 0.7
+  minEmptyChance: 0.2
+  emptyChanceDecreaseRate: 0.05
+  multiplierSpawnChanceZeroValue: 0.6
 --- !u!4 &1829361787
 Transform:
   m_ObjectHideFlags: 0
@@ -8310,3 +8349,4 @@ SceneRoots:
   - {fileID: 75725038}
   - {fileID: 1180077963}
   - {fileID: 2122027242}
+  - {fileID: 1763813386}
