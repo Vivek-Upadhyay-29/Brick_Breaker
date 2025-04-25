@@ -4,15 +4,8 @@ using UnityEngine;
 using UnityEngine.Audio;
 public enum AudioType
 {
-    WALK,
-    JUMP,
-    RUN,
-    CROUCH,
-    SHOOT,
-    TARGET,
-    GUNHOLD,
+
     BACKGROUND,
-    BOMB,
     BALL,
     BUTTON,
     WALLHIT
@@ -32,8 +25,8 @@ public class AudioMangerScript : MonoBehaviour
         public AudioClip audioClip;
     }
 
-    public AudioSource audioSource;
-    public AudioSource musicSource;
+    public AudioSource audioSource{ get; set; }
+    public AudioSource musicSource { get; set; }
 
 
     void Awake()
