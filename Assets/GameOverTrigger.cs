@@ -7,6 +7,7 @@ public class GameOverTrigger : MonoBehaviour
 {
     public GameObject gameOverpanel;
     public BrickSpawner brickSpawner;
+    public BallMovementScript ballMovement;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,6 +24,9 @@ public class GameOverTrigger : MonoBehaviour
                   brickSpawner.spawnedBricks[i].transform.SetParent(null); 
               }
           }
+
+          //resetting all things
+          ballMovement._ballcount = 2;
           brickSpawner.spawnedBricks.Clear(); 
           brickSpawner.ResetRowCount();
           brickSpawner.SpawnBrickRow();

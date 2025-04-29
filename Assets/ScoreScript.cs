@@ -32,7 +32,7 @@ public class ScoreScript : MonoBehaviour
         scoreManager.score += 1;
         scoreText.text = scoreManager.score.ToString();
 
-        if (scoreManager.score > scoreManager.highscore)
+        if (scoreManager.score  >= int.Parse(highScoreText.text) )
         {
             scoreManager.highscore = scoreManager.score;
             highScoreText.text = scoreManager.highscore.ToString();
@@ -43,7 +43,6 @@ public class ScoreScript : MonoBehaviour
     {
         scoreManager.score = 0;
         scoreText.text = scoreManager.score.ToString();
-       
         
     }
 }

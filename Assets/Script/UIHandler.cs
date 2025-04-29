@@ -8,16 +8,14 @@ public class UIHandler : MonoBehaviour
     public GameObject currentPanel;
     public GameObject nextPanel;
     public BrickSpawner brickSpawner;
-
+    public BallMovementScript ballMovement;
     public void NextPanel()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
     }
-
-
-
+    
     public void Homebtn()
     {
         currentPanel.SetActive(false);
@@ -32,8 +30,10 @@ public class UIHandler : MonoBehaviour
                   
             }
         }
+        ballMovement._ballcount = 2;
         brickSpawner.SpawnBrickRow();
     }
+    
     public void RestartPanel()
     {
         ScoreScript.Instance.Reset();
@@ -46,6 +46,7 @@ public class UIHandler : MonoBehaviour
                   
                 }
             }
+            ballMovement._ballcount = 2;
             brickSpawner.SpawnBrickRow();
     }
  
@@ -54,7 +55,6 @@ public class UIHandler : MonoBehaviour
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
        currentPanel.SetActive(false);
     }
-
 
     public void QuitGame()
     {

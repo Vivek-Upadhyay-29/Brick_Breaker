@@ -9,6 +9,7 @@ public class HomeBtn : MonoBehaviour
     public GameObject gamePanel;
     public BrickSpawner brickSpawner;
 
+    public BallMovementScript ballMovement;
     // Start is called before the first frame update
     public void Homebtn()
     {
@@ -24,6 +25,7 @@ public class HomeBtn : MonoBehaviour
                   
             }
         }
+        ballMovement._ballcount = 2;
         brickSpawner.SpawnBrickRow();
     }
 }
