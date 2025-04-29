@@ -43,7 +43,7 @@ public class Brick : MonoBehaviour
                     ScoreScript.Instance.Incrementer();
             }
             AudioMangerScript.Instance.PlayOneShot(AudioType.BALL);
-                //ParentObj.SetActive(false);
+     
         }
         
         if (collision.gameObject.CompareTag("WallCollider"))

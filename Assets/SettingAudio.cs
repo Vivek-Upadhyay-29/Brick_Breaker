@@ -10,9 +10,9 @@ public class SettingAudio : MonoBehaviour
     // Start is called before the first frame update
   
     // Update is called once per frame
-    void Update()
-    {
-        maxVolume = volumeSlider.value;
-        AudioMangerScript.Instance.musicSource.volume = maxVolume;
-    }
+    // void Update()
+    // {
+    //     maxVolume = volumeSlider.value;
+    //     AudioMangerScript.Instance.musicSource.volume = maxVolume;
+    // }
 }

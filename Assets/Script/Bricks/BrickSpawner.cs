@@ -114,7 +114,10 @@ public class BrickSpawner : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         NewLineSpawner();
     }
-
+    public void ResetRowCount()
+    {
+        rowsSpawned = 0;
+    }
     private void NewLineSpawner()
     {
         float currentEmptyChance = GetCurrentEmptyChance();

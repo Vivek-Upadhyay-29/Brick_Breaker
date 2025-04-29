@@ -4,18 +4,24 @@ public class BallDownBtnScript : MonoBehaviour
 {
     public BallMovementScript ballMovementScript;
     public BrickSpawner brickSpawner;
-    public pooledCollision PooledCollision; // Note: Currently unused in BallDown()
+    public pooledCollision PooledCollision; 
     public GameObject mainBall;
-    private bool isResetting = false;
     public float resetDebounceTime = 0.5f;
+    private Rigidbody2D gameball;
+
+    
+    private void Start()
+    {
+     
+        gameball = mainBall.GetComponent<Rigidbody2D>();
+    }
 
     public void BallDown()
     {
-        if (!isResetting && ballMovementScript != null && ballMovementScript.isMoving && brickSpawner != null && mainBall != null)
+        if (ballMovementScript != null && ballMovementScript.isMoving && brickSpawner != null && mainBall != null)
         {
-            isResetting = true;
-
-            // Deactivate and stop all clone balls
+           
+          
             foreach (GameObject ball in ballMovementScript.ballClone)
             {
                 if (ball != null && ball.activeInHierarchy)
@@ -25,31 +31,25 @@ public class BallDownBtnScript : MonoBehaviour
                     ball.SetActive(false);
                 }
             }
-
+            if (gameball != null)
+            {
+                gameball.velocity = new Vector2(0f, -5f);         
+                gameball.velocity = Vector2.zero;               
+            }
             ballMovementScript.presentBallCount = 0;
             ballMovementScript.isMoving = false;
             ballMovementScript.slider.value = 0;
             ballMovementScript.canForceDownBall = true;
             mainBall.transform.position = ballMovementScript.startPos;
-
             brickSpawner.MoveDownAndAddNewRow();
-
-            // Optional: Add logic to reset PooledCollision if needed
-
-            // Debounce the button
-            Invoke(nameof(ResetResettingFlag), resetDebounceTime);
         }
-        else if (ballMovementScript == null || brickSpawner == null || mainBall == null)
-        {
-            Debug.LogError("BallDownBtnScript: One or more references (ballMovementScript, brickSpawner, mainBall) are not assigned in the Inspector!");
-        }
+    
     }
 
-    private void ResetResettingFlag()
-    {
-        isResetting = false;
-    }
+ 
 }
+
+
 //using System.Collections;
 //using System.Collections.Generic;
 //using UnityEngine;

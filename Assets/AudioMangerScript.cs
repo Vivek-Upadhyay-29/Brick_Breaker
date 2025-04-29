@@ -12,8 +12,8 @@ public enum AudioType
 }
 public class AudioMangerScript : MonoBehaviour
 {
-    
-    public static AudioMangerScript Instance { get; private set; }
+
+    public static AudioMangerScript Instance;
 
 
     [SerializeField] private List<Sound> sounds = new List<Sound>();
@@ -25,8 +25,8 @@ public class AudioMangerScript : MonoBehaviour
         public AudioClip audioClip;
     }
 
-    public AudioSource audioSource{ get; set; }
-    public AudioSource musicSource { get; set; }
+    public AudioSource audioSource;
+    public AudioSource musicSource;
 
 
     void Awake()

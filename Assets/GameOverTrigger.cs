@@ -20,11 +20,40 @@ public class GameOverTrigger : MonoBehaviour
               if (brickSpawner.spawnedBricks[i]){
                   
                   brickSpawner.spawnedBricks[i].SetActive(false);
-                  
+                  brickSpawner.spawnedBricks[i].transform.SetParent(null); 
               }
           }
+          brickSpawner.spawnedBricks.Clear(); 
+          brickSpawner.ResetRowCount();
           brickSpawner.SpawnBrickRow();
         }
+        
     }
-    
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag("Multiplier") || collision.CompareTag("clone") || collision.CompareTag("brick"))
+    //     {
+    //         gameOverpanel.SetActive(true);
+    //         ScoreScript.Instance.Reset();
+    //
+    //         // sab bricks aur powerup ke liye
+    //         for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+    //         {
+    //             if (brickSpawner.spawnedBricks[i])
+    //             {
+    //                 brickSpawner.spawnedBricks[i].SetActive(false);
+    //                 brickSpawner.spawnedBricks[i].transform.SetParent(null); 
+    //                 // for parent in  powerups
+    //             }
+    //         }
+    //
+    //         brickSpawner.spawnedBricks.Clear();
+    //         brickSpawner.ResetRowCount();
+    //
+    //         // Spawn fresh bricks
+    //         brickSpawner.SpawnBrickRow();
+    //     }
+    // }
+
+
 }
