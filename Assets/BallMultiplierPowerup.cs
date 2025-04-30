@@ -1,19 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BallMultiplierPowerup : MonoBehaviour
 {
-
-    private float useTimes = 3;
+    private int useTimes = 2;
     public BallMovementScript ballMovementScript;
-    // Start is called before the first frame update
-    public void Mutiplier()
+
+    public void Multiplier()
     {
-        if (useTimes >= 0 && !ballMovementScript.isMoving)
+        if (useTimes > 0 && !ballMovementScript.isMoving)
         {
-         ballMovementScript._ballcount = 60;
-         useTimes-- ;
+            useTimes--;
+
+            int originalCount = ballMovementScript._ballcount;
+            ballMovementScript._ballcount = 30;
+
+            ballMovementScript.StartCoroutine(RestoreAfterShoot(originalCount));
         }
+    }
+
+    private IEnumerator RestoreAfterShoot(int originalCount)
+    {
+        yield return new WaitUntil(() => !ballMovementScript.isMoving);
+
+        ballMovementScript._ballcount = originalCount;
     }
 }

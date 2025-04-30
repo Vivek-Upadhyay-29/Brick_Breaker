@@ -14,7 +14,7 @@ public class BrickSpawner : MonoBehaviour
     [Range(0f, 1f)] public float initialEmptyChance = 0.7f;
     [Range(0f, 1f)] public float minEmptyChance = 0.2f;
     public float emptyChanceDecreaseRate = 0.05f;
-    [Range(0f, 1f)] public float multiplierSpawnChanceZeroValue = 0.6f;
+    [Range(0f, 1f)] public float gettingPowerupChance = 0.6f;
     public float powerUpVerticalOffset = -0.1f;
 
     private int rowsSpawned = 0;
@@ -49,7 +49,7 @@ public class BrickSpawner : MonoBehaviour
 
                 if (brickValue == 0)
                 {
-                    if (!(Random.value < (1f - multiplierSpawnChanceZeroValue)))
+                    if (!(Random.value < (1f - gettingPowerupChance)))
                     {
                         GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
                         if (powerUp != null)
@@ -60,7 +60,7 @@ public class BrickSpawner : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogWarning("Could not get a power-up from the pool!");
+                            Debug.Log("Could not get a power-up!");
                         }
                     }
                 }
@@ -86,13 +86,13 @@ public class BrickSpawner : MonoBehaviour
                             }
                             else
                             {
-                                Debug.LogWarning("Could not get a child power-up from the pool!");
+                                Debug.Log("Could not get a child power-up!");
                             }
                         }
                     }
                     else
                     {
-                        Debug.LogWarning("Could not get a brick from the pool!");
+                        Debug.Log("Could not get a brick!");
                     }
                 }
             }
@@ -136,7 +136,7 @@ public class BrickSpawner : MonoBehaviour
 
             if (brickValue == 0)
             {
-                if (!(Random.value < (1f - multiplierSpawnChanceZeroValue)))
+                if (!(Random.value < (1f - gettingPowerupChance)))
                 {
                     GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
                     if (powerUp != null)
@@ -147,7 +147,7 @@ public class BrickSpawner : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning("Could not get a power-up from the pool!");
+                        Debug.Log("Could not get a power-up!");
                     }
                 }
             }
@@ -173,13 +173,13 @@ public class BrickSpawner : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogWarning("Could not get a child power-up from the pool!");
+                            Debug.Log("Could not get a child power-up!");
                         }
                     }
                 }
                 else
                 {
-                    Debug.LogWarning("Could not get a brick from the pool!");
+                    Debug.Log("Could not get a brick !");
                 }
             }
         }

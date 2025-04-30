@@ -10,7 +10,7 @@ public class HomeBtn : MonoBehaviour
     public BrickSpawner brickSpawner;
 
     public BallMovementScript ballMovement;
-    // Start is called before the first frame update
+    // Start is called before the first frame update ///HELL
     public void Homebtn()
     {
         currentPanel.SetActive(false);
