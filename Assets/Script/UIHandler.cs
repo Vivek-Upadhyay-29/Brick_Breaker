@@ -9,6 +9,7 @@ public class UIHandler : MonoBehaviour
     public GameObject nextPanel;
     public BrickSpawner brickSpawner;
     public BallMovementScript ballMovement;
+    public BallMultiplierPowerup  ballMultiplierPowerup;
     public void NextPanel()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
@@ -46,6 +47,8 @@ public class UIHandler : MonoBehaviour
                   
                 }
             }
+
+            ballMultiplierPowerup._useTimes = 2;
             ballMovement._ballcount = 2;
             brickSpawner.SpawnBrickRow();
     }

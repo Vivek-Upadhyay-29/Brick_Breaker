@@ -8,6 +8,7 @@ public class HomeBtn : MonoBehaviour
     public GameObject nextPanel;
     public GameObject gamePanel;
     public BrickSpawner brickSpawner;
+    public BallMultiplierPowerup  ballMultiplierPowerup;
 
     public BallMovementScript ballMovement;
     // Start is called before the first frame update ///HELL
@@ -26,6 +27,7 @@ public class HomeBtn : MonoBehaviour
             }
         }
         ballMovement._ballcount = 2;
+        ballMultiplierPowerup._useTimes = 2;
         brickSpawner.SpawnBrickRow();
     }
 }
