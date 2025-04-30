@@ -29,10 +29,8 @@ public class BallMultiplierPowerup : MonoBehaviour
     }
     private IEnumerator RestoreAfterShoot(int originalCount)
     {
-        
         yield return new WaitUntil(() => ballMovementScript.isMoving);
         yield return new WaitUntil(() => !ballMovementScript.isMoving);
-
         ballMovementScript._ballcount = originalCount;
     }
 

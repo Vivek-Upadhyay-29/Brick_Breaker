@@ -28,6 +28,8 @@ public class HomeBtn : MonoBehaviour
         }
         ballMovement._ballcount = 2;
         ballMultiplierPowerup._useTimes = 2;
+        ballMultiplierPowerup.textMesh.text = "2";
+        
         brickSpawner.SpawnBrickRow();
     }
 }
