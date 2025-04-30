@@ -16,13 +16,6 @@ public class Brick : MonoBehaviour
       
     }
 
-    private void Start()
-    {
-        
-    }
-
-    
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("cloneBall"))
@@ -34,8 +27,6 @@ public class Brick : MonoBehaviour
                   gameObject.SetActive(false);
                       if (valueText != null)
                           valueText.text = "";
-                    
-                
             }
 
             if (health == 0)

@@ -608,7 +608,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   presentBallCount: 0
   canForceDownBall: 1
-  brickSpawner: {fileID: 0}
   startPos: {x: 0, y: 0}
 --- !u!1 &62379878
 GameObject:
@@ -642,8 +641,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1273136368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 94.3458, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3516,7 +3515,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   presentBallCount: 0
   canForceDownBall: 1
-  brickSpawner: {fileID: 0}
   startPos: {x: 0, y: 0}
 --- !u!120 &671224448
 LineRenderer:
@@ -4623,7 +4621,6 @@ MonoBehaviour:
   sprite: {fileID: 799860582}
   presentBallCount: 0
   canForceDownBall: 1
-  brickSpawner: {fileID: 1556944713}
   startPos: {x: 0, y: 0}
 --- !u!212 &799860582
 SpriteRenderer:
@@ -5048,7 +5045,7 @@ RectTransform:
   m_Father: {fileID: 1632458781}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 5, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5732,7 +5729,6 @@ MonoBehaviour:
   sprite: {fileID: 0}
   presentBallCount: 0
   canForceDownBall: 1
-  brickSpawner: {fileID: 0}
   startPos: {x: 0, y: 0}
 --- !u!120 &963671079
 LineRenderer:
@@ -7308,7 +7304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1198891480
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7495,7 +7491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1258848944
 RectTransform:
   m_ObjectHideFlags: 0

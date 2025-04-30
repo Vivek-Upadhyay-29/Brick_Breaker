@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Start is called before the first frame update
 public class Ground : MonoBehaviour
 {
     public RandomPrefabGenerator generator;
@@ -36,9 +35,7 @@ public class Ground : MonoBehaviour
 
         if (collision.gameObject.tag == "cloneBall")
         {
-         
-
-
+            
             bool anyBallActive = false;
 
             foreach (GameObject ball in ObjectPool.Instance.pooledObjects)

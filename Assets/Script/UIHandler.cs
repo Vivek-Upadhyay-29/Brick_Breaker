@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 public class UIHandler : MonoBehaviour
 {
     public GameObject currentPanel;
@@ -15,24 +12,6 @@ public class UIHandler : MonoBehaviour
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
-    }
-    
-    public void Homebtn()
-    {
-        currentPanel.SetActive(false);
-        nextPanel.SetActive(true);
-        ScoreScript.Instance.Reset();
-        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
-        {
-            if (brickSpawner.spawnedBricks[i]){
-                  
-                brickSpawner.spawnedBricks[i].SetActive(false);
-                  
-            }
-        }
-        ballMovement._ballcount = 2;
-        brickSpawner.SpawnBrickRow();
     }
     
     public void RestartPanel()

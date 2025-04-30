@@ -19,14 +19,3 @@ public class pooledCollision : MonoBehaviour
     }
 }
 
-// Adjust this to change the speed
-
-   
-    // private void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     if (collision.gameObject.tag == "Multiplier")
-    //     {
-    //         ballMovement._ballcount++;
-    //     }
-    // }
-

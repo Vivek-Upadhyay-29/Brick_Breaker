@@ -33,8 +33,7 @@ public class BallMovementScript : MonoBehaviour
     public int _ballcount = 1;
     [SerializeField] SpriteRenderer sprite;
     public int presentBallCount;
-    public bool canForceDownBall = true;  //yah wala brick down wala button kaam karega ya nahi ye check karne k liye hai
-    public BrickSpawner brickSpawner;
+    public bool canForceDownBall = true; 
     public Vector2 startPos;
 
     void Start()
@@ -105,7 +104,6 @@ public class BallMovementScript : MonoBehaviour
             StartCoroutine(Shootball());
             isMoving = true;
             canForceDownBall = false;
-
             rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
 
         }
@@ -126,8 +124,6 @@ public class BallMovementScript : MonoBehaviour
                 ball.transform.position = shootPosition;
                 ball.SetActive(true);
                 ballClone.Add(ball);
-                
-
             }
 
             Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
