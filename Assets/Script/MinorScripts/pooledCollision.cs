@@ -16,6 +16,11 @@ public class pooledCollision : MonoBehaviour
 
 
         }
+
+        if (collision.gameObject.CompareTag("WallCollider"))
+        {
+            AudioMangerScript.Instance.PlayOneShot(AudioType.WALLHIT);
+        }
     }
 }
 

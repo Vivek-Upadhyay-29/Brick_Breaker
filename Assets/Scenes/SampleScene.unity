@@ -291,10 +291,10 @@ RectTransform:
   - {fileID: 628019510}
   m_Father: {fileID: 1198891480}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.19268309, y: 0.5415395}
-  m_AnchorMax: {x: 0.7978099, y: 0.68100005}
-  m_AnchoredPosition: {x: 4.8573, y: -876.49994}
-  m_SizeDelta: {x: 8.023071, y: -6.8313904}
+  m_AnchorMin: {x: 0.19268309, y: 0.13152903}
+  m_AnchorMax: {x: 0.7978099, y: 0.26435977}
+  m_AnchoredPosition: {x: 4.8573, y: 1}
+  m_SizeDelta: {x: 8.023071, y: 8.168579}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &30818700
 MonoBehaviour:
@@ -311,8 +311,8 @@ MonoBehaviour:
   currentPanel: {fileID: 1198891479}
   nextPanel: {fileID: 1258848943}
   brickSpawner: {fileID: 1556944713}
-  ballMovement: {fileID: 0}
-  ballMultiplierPowerup: {fileID: 0}
+  ballMovement: {fileID: 799860581}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!114 &30818701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a465c521a59a4a0d90fa9505dc6c581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   slider: {fileID: 0}
   speed: 0
   sliderValue: 0
@@ -1035,9 +1036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballMovementScript: {fileID: 799860581}
   brickSpawner: {fileID: 1556944713}
-  PooledCollision: {fileID: 8210587697434109744, guid: 09afdbaadbd95498b9e251514e705ae2, type: 3}
   mainBall: {fileID: 799860580}
-  resetDebounceTime: 0.5
 --- !u!1 &233510872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,7 +1118,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6157f6f49b72d4b6599a10cd1db1a3e8, type: 3}
-  m_Color: {r: 0.0563417, g: 0, b: 0.4056604, a: 1}
+  m_Color: {r: 0, g: 0.09334212, b: 0.36862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1146,7 +1145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &238874484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1163,8 +1162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.03653206, y: 0}
   m_AnchorMax: {x: 0.049000002, y: 1}
-  m_AnchoredPosition: {x: -0.29077148, y: 37.668}
-  m_SizeDelta: {x: -0.5819, y: -607.36}
+  m_AnchoredPosition: {x: -0.29077148, y: 40.302}
+  m_SizeDelta: {x: -0.5819, y: -602.09}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &238874485
 MonoBehaviour:
@@ -1939,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &350927792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2245,7 +2244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &432763514
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2262,8 +2261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 8.7752, y: -269.02124}
-  m_SizeDelta: {x: 15.9955, y: 906.3145}
+  m_AnchoredPosition: {x: 9.3898, y: -269.02124}
+  m_SizeDelta: {x: 15.9955, y: 905.0714}
   m_Pivot: {x: 0.49999893, y: 0.5054911}
 --- !u!114 &432763515
 MonoBehaviour:
@@ -2337,8 +2336,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -3.7332153, y: 3.7332153}
+  m_SizeDelta: {x: -115.7281, y: -130.6608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &463264146
 MonoBehaviour:
@@ -2887,9 +2886,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 1258848943}
   nextPanel: {fileID: 1924362057}
-  brickSpawner: {fileID: 0}
-  ballMovement: {fileID: 0}
-  ballMultiplierPowerup: {fileID: 0}
+  brickSpawner: {fileID: 1556944713}
+  ballMovement: {fileID: 799860581}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!1 &559200717
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,7 +3195,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 50.708267, y: 63.042732, z: 49.33783, w: 65.78375}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3498,6 +3497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a465c521a59a4a0d90fa9505dc6c581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   slider: {fileID: 57052458}
   speed: 2.49
   sliderValue: 0
@@ -4471,7 +4471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9882353, g: 0.91764706, b: 0.28627452, a: 1}
+  m_Color: {r: 0.98039216, g: 0.827451, b: 0.25882354, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4530,8 +4530,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.707275, y: -542}
-  m_SizeDelta: {x: 37.4147, y: 923.3}
+  m_AnchoredPosition: {x: 8.469597, y: -566.8}
+  m_SizeDelta: {x: -16.939, y: 1133.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &793515222
 MonoBehaviour:
@@ -4604,6 +4604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a465c521a59a4a0d90fa9505dc6c581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   slider: {fileID: 57052458}
   speed: 15
   sliderValue: 0
@@ -4617,7 +4618,7 @@ MonoBehaviour:
   useLine: 1
   ballClone: []
   _isCloned: 0
-  _ballcount: 2
+  _ballcount: 1
   sprite: {fileID: 799860582}
   presentBallCount: 0
   canForceDownBall: 1
@@ -5300,8 +5301,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.8665771, y: 1.8666077}
+  m_SizeDelta: {x: -104.5287, y: -134.3938}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &901363393
 MonoBehaviour:
@@ -5386,7 +5387,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 1.8666078, y: 2.4095688, z: 3.7331085, w: 5.599865}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5712,6 +5713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a465c521a59a4a0d90fa9505dc6c581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   slider: {fileID: 57052458}
   speed: 15
   sliderValue: 0
@@ -6372,8 +6374,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.707275, y: 369.15002}
-  m_SizeDelta: {x: 262.6314, y: 923.3}
+  m_AnchoredPosition: {x: -7.4491577, y: 284.48004}
+  m_SizeDelta: {x: 224.7073, y: 795.9837}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1040379308
 MonoBehaviour:
@@ -6523,7 +6525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.106530905, y: 0.08423942}
   m_AnchorMax: {x: 0.90700006, y: 0.47000003}
-  m_AnchoredPosition: {x: 1.0721436, y: -8.999939}
+  m_AnchoredPosition: {x: 1.0721436, y: -8.999878}
   m_SizeDelta: {x: -0.6921997, y: -14.19696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1070690177
@@ -6542,7 +6544,7 @@ MonoBehaviour:
   nextPanel: {fileID: 1198891479}
   brickSpawner: {fileID: 1556944713}
   ballMovement: {fileID: 799860581}
-  ballMultiplierPowerup: {fileID: 0}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!114 &1070690178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7285,8 +7287,8 @@ MonoBehaviour:
   currentPanel: {fileID: 1198891479}
   nextPanel: {fileID: 1258848943}
   brickSpawner: {fileID: 1556944713}
-  ballMovement: {fileID: 0}
-  ballMultiplierPowerup: {fileID: 0}
+  ballMovement: {fileID: 799860581}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!1 &1198891479
 GameObject:
   m_ObjectHideFlags: 0
@@ -7298,6 +7300,7 @@ GameObject:
   - component: {fileID: 1198891480}
   - component: {fileID: 1198891482}
   - component: {fileID: 1198891481}
+  - component: {fileID: 1198891483}
   m_Layer: 5
   m_Name: Main
   m_TagString: Untagged
@@ -7367,6 +7370,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198891479}
   m_CullTransparentMesh: 1
+--- !u!95 &1198891483
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198891479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f01b730d322f746d1b6613391082ce8c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1210689144
 GameObject:
   m_ObjectHideFlags: 0
@@ -7485,6 +7509,7 @@ GameObject:
   - component: {fileID: 1258848947}
   - component: {fileID: 1258848946}
   - component: {fileID: 1258848945}
+  - component: {fileID: 1258848948}
   m_Layer: 5
   m_Name: GamePanel
   m_TagString: Untagged
@@ -7608,6 +7633,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258848943}
   m_CullTransparentMesh: 1
+--- !u!95 &1258848948
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258848943}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e9565ba1d7a54076823c904b74a3b1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1273136367
 GameObject:
   m_ObjectHideFlags: 0
@@ -7678,8 +7724,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.591, y: 1011.8}
-  m_SizeDelta: {x: 1019.3, y: 462.3}
+  m_AnchoredPosition: {x: 0.000010014, y: 1027.7}
+  m_SizeDelta: {x: 1019.3, y: 464.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1290103629
 MonoBehaviour:
@@ -8528,7 +8574,7 @@ Transform:
   m_GameObject: {fileID: 1556944712}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: 4.155, z: 0}
+  m_LocalPosition: {x: -1.7, y: 4.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9701,7 +9747,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 46.105576, y: 63.594025, z: 47.695435, w: 65.18381}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -9996,7 +10042,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 54.054825, y: 62.00409, z: 52.464996, w: 62.00419}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10293,8 +10339,8 @@ MonoBehaviour:
   currentPanel: {fileID: 1198891479}
   nextPanel: {fileID: 270959127}
   brickSpawner: {fileID: 1556944713}
-  ballMovement: {fileID: 0}
-  ballMultiplierPowerup: {fileID: 0}
+  ballMovement: {fileID: 799860581}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!1 &1829140735
 GameObject:
   m_ObjectHideFlags: 0
@@ -10521,7 +10567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10369382, y: 0.6075654}
   m_AnchorMax: {x: 0.8865702, y: 0.8495514}
-  m_AnchoredPosition: {x: 6.1539, y: 4.9858093}
+  m_AnchoredPosition: {x: 6.1539307, y: 4.98584}
   m_SizeDelta: {x: 12.3078, y: 9.97168}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1866066238
@@ -10540,7 +10586,7 @@ MonoBehaviour:
   nextPanel: {fileID: 1258848943}
   brickSpawner: {fileID: 1556944713}
   ballMovement: {fileID: 799860581}
-  ballMultiplierPowerup: {fileID: 0}
+  ballMultiplierPowerup: {fileID: 1321940451}
 --- !u!114 &1866066239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11324,8 +11370,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -2.7999268, y: 0.9332886}
+  m_SizeDelta: {x: -95.1958, y: -128.7942}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2073880600
 MonoBehaviour:
@@ -11898,7 +11944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2140758266
 RectTransform:
   m_ObjectHideFlags: 0

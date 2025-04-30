@@ -4,9 +4,7 @@ public class BallDownBtnScript : MonoBehaviour
 {
     public BallMovementScript ballMovementScript;
     public BrickSpawner brickSpawner;
-    public pooledCollision PooledCollision; 
     public GameObject mainBall;
-    public float resetDebounceTime = 0.5f;
     private Rigidbody2D gameball;
 
     
@@ -29,6 +27,7 @@ public class BallDownBtnScript : MonoBehaviour
                     Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
                     if (rb != null) rb.velocity = Vector2.zero;
                     ball.SetActive(false);
+                    
                 }
             }
             if (gameball != null)

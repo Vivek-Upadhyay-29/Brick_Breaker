@@ -30,12 +30,12 @@ public class Ground : MonoBehaviour
         //
         //
         //     }
-        //
+        // can add !isnotmoving from main ball
         // }
 
         if (collision.gameObject.tag == "cloneBall")
         {
-            
+
             bool anyBallActive = false;
 
             foreach (GameObject ball in ObjectPool.Instance.pooledObjects)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BallMovementScript : MonoBehaviour
 {
-    private Rigidbody2D rb;
+   [SerializeField] private Rigidbody2D rb;
     public Slider slider;
     [SerializeField] private float speed = 1;
     public float sliderValue;
@@ -114,7 +114,7 @@ public class BallMovementScript : MonoBehaviour
     IEnumerator Shootball()
     {
         Vector2 shootPosition = transform.position;
-
+        yield return new WaitForSeconds(0.1f);
         for (int i = 0; i < _ballcount; i++)
         {
 

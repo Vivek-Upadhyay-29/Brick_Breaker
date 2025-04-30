@@ -26,7 +26,7 @@ public class HomeBtn : MonoBehaviour
                   
             }
         }
-        ballMovement._ballcount = 2;
+        ballMovement._ballcount = 1;
         ballMultiplierPowerup._useTimes = 2;
         ballMultiplierPowerup.textMesh.text = "2";
         
