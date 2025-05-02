@@ -46,7 +46,7 @@ public class BrickSpawner : MonoBehaviour
                 {
                     brickValue = Random.Range(1, ballMovementScript._ballcount + 8);
                 }
-
+            
                 Vector3 spawnPos = transform.position + new Vector3(j * spacing, i * -spacing, 0);
 
                 if (brickValue == 0)
@@ -56,50 +56,25 @@ public class BrickSpawner : MonoBehaviour
                     if (!(Random.value < (1f - gettingPowerupChance)))
                     {
                         GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
-                        if (powerUp != null)
-                        {
-                            powerUp.transform.position = spawnPos + new Vector3(0, powerUpVerticalOffset, 0);
-                            powerUp.SetActive(true);
-                            spawnedBricks.Add(powerUp);
-                        }
-                        else
-                        {
-                            Debug.Log("Could not get a power-up!");
-                        }
+                
+                        powerUp.transform.position = spawnPos + new Vector3(0, powerUpVerticalOffset, 0);
+                        powerUp.SetActive(true);
+                        spawnedBricks.Add(powerUp);
+                       
                     }
                 }
                 else
                 {
-                    
-                    //yah for empty spaces
-                    GameObject brickObj = BrickPool.Instance.GetPooledBrick();
-                    if (brickObj != null)
-                    {
+                    //for bricks
+        
+                        GameObject brickObj = BrickPool.Instance.GetPooledBrick();
+                  
                         brickObj.transform.position = spawnPos;
                         spawnedBricks.Add(brickObj);
                         Brick brickComponent = brickObj.GetComponent<Brick>();
                         brickComponent.SetValue(brickValue);
                         brickObj.SetActive(true);
-
-                        if (Random.value < powerUpSpawnChance)
-                        {
-                            GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
-                            if (powerUp != null)
-                            {
-                                powerUp.transform.SetParent(brickObj.transform);
-                                powerUp.transform.localPosition = new Vector3(0, powerUpVerticalOffset, 0);
-                                powerUp.SetActive(true);
-                            }
-                            else
-                            {
-                                Debug.Log("Could not get a child power-up!");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Debug.Log("Could not get a brick!");
-                    }
+                    
                 }
             }
         }
@@ -144,53 +119,29 @@ public class BrickSpawner : MonoBehaviour
             {
                 if (!(Random.value < (1f - gettingPowerupChance)))
                 {
-                    GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
-                    if (powerUp != null)
-                    {
+                        GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
+                   
                         powerUp.transform.position = spawnPos + new Vector3(0, powerUpVerticalOffset, 0);
                         powerUp.SetActive(true);
                         spawnedBricks.Add(powerUp);
-                    }
-                    else
-                    {
-                        Debug.Log("Could not get a power-up!");
-                    }
                 }
             }
             else
             {
-                GameObject brickObj = BrickPool.Instance.GetPooledBrick();
-                if (brickObj != null)
-                {
+                    GameObject brickObj = BrickPool.Instance.GetPooledBrick();
+             
                     brickObj.transform.position = spawnPos;
                     spawnedBricks.Add(brickObj);
                     Brick brickComponent = brickObj.GetComponent<Brick>();
                     brickComponent.SetValue(brickValue);
                     brickObj.SetActive(true);
-
-                    if (Random.value < powerUpSpawnChance)
-                    {
-                        GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
-                        if (powerUp != null)
-                        {
-                            powerUp.transform.SetParent(brickObj.transform);
-                            powerUp.transform.localPosition = new Vector3(0, powerUpVerticalOffset, 0);
-                            powerUp.SetActive(true);
-                        }
-                        else
-                        {
-                            Debug.Log("Could not get a child power-up!");
-                        }
-                    }
-                }
-                else
-                {
-                    Debug.Log("Could not get a brick !");
-                }
             }
         }
         rowsSpawned++;
     }
+    
+    
+    
 
     IEnumerator TileDown(Transform startPos)
     {

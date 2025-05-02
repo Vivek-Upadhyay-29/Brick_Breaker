@@ -19,7 +19,7 @@ public class BallMovementScript : MonoBehaviour
     [Header("Raycast")] [SerializeField] private LayerMask layermask;
     private RaycastHit2D ray;
     private float angle;
-    [SerializeField] Vector2 minMaxAngle;
+    [SerializeField] private Vector2 minMaxAngle;
 
     [Header("LineRenderer")] [SerializeField]
     LineRenderer line;
@@ -52,8 +52,17 @@ public class BallMovementScript : MonoBehaviour
     public void RayCheck()
 
     {
- 
-        if (Input.GetMouseButton(0) && !isMoving && sliderValue !=0   ) 
+        bool anyBallActive = false;
+
+        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+        {
+            if (ball.activeInHierarchy)
+            {
+                anyBallActive = true;
+                break;
+            }
+        }
+        if (Input.GetMouseButton(0) && !isMoving && sliderValue !=0 && !anyBallActive  ) 
         {
             line.enabled = true;
             // sprite.enabled = true;
@@ -94,10 +103,20 @@ public class BallMovementScript : MonoBehaviour
 
     void Update()
     {
+        bool anyBallActive = false;
+
+        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+        {
+            if (ball.activeInHierarchy)
+            {
+                anyBallActive = true;
+                break;
+            }
+        }
         RayCheck();
         sliderValue = slider.value;
         transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
-        if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue !=0)
+        if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue !=0 && !anyBallActive)
         {
             
 

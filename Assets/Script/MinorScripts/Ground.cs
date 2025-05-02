@@ -11,28 +11,7 @@ public class Ground : MonoBehaviour
     public int cloneCount;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //
-        //
-        // if (collision.gameObject.tag == "cloneBall")
-        // {
-        //     cloneCount++;
-        //     Debug.Log(cloneCount);
-        //     if (cloneCount == ballMovement.presentBallCount)
-        //     {
-        //         ballMovement.ballClone.Clear();
-        //         ballMovement.presentBallCount = 0;
-        //       //  generator.MoveDown(); for previous instantiate down
-        //         cloneCount = 0;
-        //
-        //         // new wala
-        //       brickSpawner.MoveDownAndAddNewRow();
-        //         
-        //
-        //
-        //     }
-        // can add !isnotmoving from main ball
-        // }
-
+    
         if (collision.gameObject.tag == "cloneBall")
         {
 
@@ -47,8 +26,8 @@ public class Ground : MonoBehaviour
                 }
             }
 
-          
-            if (!anyBallActive)
+            //fixed this
+            if (!anyBallActive && !ballMovement.isMoving)
             {
                 ballMovement.ballClone.Clear();
                 ballMovement.presentBallCount = 0;
