@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Brick : MonoBehaviour
 {
-    public int health = 1;
-    public TextMeshPro valueText;
-    public GameObject ParentObj;
-    private GameObject HighscorePanel;
-    private GameObject ScorePanel;
+    [SerializeField] private  int health = 1;
+    [SerializeField] private TextMeshPro valueText;
+    [SerializeField] private  GameObject HighscorePanel;
+    [SerializeField] private  GameObject ScorePanel;
     public void SetValue(int value)
     {
         health = value;

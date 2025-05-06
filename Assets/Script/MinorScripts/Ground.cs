@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    public RandomPrefabGenerator generator;
-    public BallMovementScript ballMovement;
-    public BrickSpawner brickSpawner;
-    public int cloneCount;
+    
+    [SerializeField] private  BallMovementScript ballMovement;
+    [SerializeField] private  BrickSpawner brickSpawner;
     private void OnCollisionEnter2D(Collision2D collision)
     {
     

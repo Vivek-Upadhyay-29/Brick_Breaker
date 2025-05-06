@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverTrigger : MonoBehaviour
 {
-    public GameObject gameOverpanel;
-    public BrickSpawner brickSpawner;
-    public BallMovementScript ballMovement;
+    [SerializeField] private  GameObject gameOverpanel;
+    [SerializeField] private BrickSpawner brickSpawner;
+    [SerializeField] private  BallMovementScript ballMovement;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

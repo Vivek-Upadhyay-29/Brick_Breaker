@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class UIHandler : MonoBehaviour
 {
-    public GameObject currentPanel;
-    public GameObject nextPanel;
-    public BrickSpawner brickSpawner;
-    public BallMovementScript ballMovement;
-    public BallMultiplierPowerup  ballMultiplierPowerup;
+    [SerializeField] private  GameObject currentPanel;
+    [SerializeField] private GameObject nextPanel;
+    [SerializeField] private  BrickSpawner brickSpawner;
+    [SerializeField] private  BallMovementScript ballMovement;
+    [SerializeField] private  BallMultiplierPowerup  ballMultiplierPowerup;
     public void NextPanel()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);

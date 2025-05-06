@@ -6,32 +6,40 @@ using UnityEngine.UI;
 
 public class BallMovementScript : MonoBehaviour
 {
-   [SerializeField] private Rigidbody2D rb;
-    public Slider slider;
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed = 1;
+    [SerializeField] private  bool isIdle;
+    [SerializeField] private  Vector2 newStartPos;
+    [SerializeField] private  Vector2 endPos;
     public float sliderValue;
-  
-    private bool isIdle;
+    public   Slider slider;
     public bool isMoving;
-    private Vector2 newStartPos;
-    Vector2 endPos;
-
-    [Header("Raycast")] [SerializeField] private LayerMask layermask;
-    private RaycastHit2D ray;
-    private float angle;
+    
+    [Space]
+    [Space]
+    
+    [Header("Raycast")] 
+    [SerializeField] private  LayerMask layermask;
+    [SerializeField] private   RaycastHit2D ray;
+    [SerializeField] private  float angle;
     [SerializeField] private Vector2 minMaxAngle;
 
-    [Header("LineRenderer")] [SerializeField]
-    LineRenderer line;
-
+    [Space]
+    [Space]
+   
+    [Header("LineRenderer")] 
+    [SerializeField] private LineRenderer line;
     [SerializeField] private bool useRay;
     [SerializeField] private bool useLine;
 
+    [Space]
+    [Space]
+    
     [Header("Ball Prefab")]
+    [SerializeField] SpriteRenderer sprite;
     public List<GameObject> ballClone;
     public bool _isCloned;
     public int _ballcount = 1;
-    [SerializeField] SpriteRenderer sprite;
     public int presentBallCount;
     public bool canForceDownBall = true; 
     public Vector2 startPos;

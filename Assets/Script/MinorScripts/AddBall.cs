@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AddBall : MonoBehaviour
 {
-    public float rotationSpeed = 100f; 
+    [SerializeField] private float rotationSpeed = 100f; 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") || collision.gameObject.tag == "cloneBall" ) 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class pooledCollision : MonoBehaviour
 {
     // Start is called before the first frame update
-    public BallMovementScript ballMovement;
+    [SerializeField] private  BallMovementScript ballMovement;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

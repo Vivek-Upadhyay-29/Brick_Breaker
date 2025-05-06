@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BallMultiplierPowerup : MonoBehaviour
 {
     public int _useTimes = 2;
-    public BallMovementScript ballMovementScript;
+    [SerializeField] private  BallMovementScript ballMovementScript;
     public TextMeshProUGUI textMesh;
 
 

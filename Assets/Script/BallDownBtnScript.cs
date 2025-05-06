@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class BallDownBtnScript : MonoBehaviour
 {
-    public BallMovementScript ballMovementScript;
-    public BrickSpawner brickSpawner;
-    public GameObject mainBall;
-    private Rigidbody2D gameball;
+    [SerializeField] private BallMovementScript ballMovementScript;
+    [SerializeField] private BrickSpawner brickSpawner;
+    [SerializeField] private GameObject mainBall;
+    [SerializeField] private Rigidbody2D gameball;
 
     
     private void Start()

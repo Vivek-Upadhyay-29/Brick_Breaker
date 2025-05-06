@@ -3,9 +3,9 @@ using TMPro;
 
 public class ScoreScript : MonoBehaviour
 {
-    public ScoreMangaer scoreManager;
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScoreText;
+    [SerializeField] private  ScoreMangaer scoreManager;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField]private int newScore;
     public static ScoreScript Instance;
     

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HomeBtn : MonoBehaviour
 {
-    public GameObject currentPanel;
-    public GameObject nextPanel;
-    public GameObject gamePanel;
-    public BrickSpawner brickSpawner;
-    public BallMultiplierPowerup  ballMultiplierPowerup;
+    [SerializeField] private  GameObject currentPanel;
+    [SerializeField] private  GameObject nextPanel;
+    [SerializeField] private  GameObject gamePanel;
+    [SerializeField] private  BrickSpawner brickSpawner;
+    [SerializeField] private  BallMultiplierPowerup  ballMultiplierPowerup;
 
     public BallMovementScript ballMovement;
     // Start is called before the first frame update ///HELL

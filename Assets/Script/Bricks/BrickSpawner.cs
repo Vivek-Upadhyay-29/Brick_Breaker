@@ -5,19 +5,19 @@ using Random = UnityEngine.Random;
 
 public class BrickSpawner : MonoBehaviour
 {
-    public List<GameObject> brickPrefabs = new List<GameObject>();
-    public float spacing = 0.8f;
-    public List<GameObject> spawnedBricks = new List<GameObject>();
-    public BallMovementScript ballMovementScript;
-    public int columns = 5;
+    [SerializeField] private  List<GameObject> brickPrefabs = new List<GameObject>();
+    [SerializeField] private  float spacing = 0.8f;
+    public List<GameObject> spawnedBricks = new List<GameObject>(); 
+    [SerializeField] private BallMovementScript ballMovementScript;
+    [SerializeField] private  int columns = 5;
     [Range(0f, 1f)] public float powerUpSpawnChance = 0.15f;
     [Range(0f, 1f)] public float initialEmptyChance = 0.7f;
     [Range(0f, 1f)] public float minEmptyChance = 0.2f;
-    public float emptyChanceDecreaseRate = 0.05f;
-    [Range(0f, 1f)] public float gettingPowerupChance = 0.6f;
-    public float powerUpVerticalOffset = -0.1f;
+    [SerializeField] private  float emptyChanceDecreaseRate = 0.05f;
+    [Range(0f, 1f)]  [SerializeField] private float gettingPowerupChance = 0.6f;
+    [SerializeField] private float powerUpVerticalOffset = -0.1f;
 
-    private int rowsSpawned = 0;
+    [SerializeField] private int rowsSpawned = 0;
 
     void Start()
     {
