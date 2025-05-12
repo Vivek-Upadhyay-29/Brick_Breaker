@@ -44,7 +44,7 @@ public class BrickSpawner : MonoBehaviour
                 //this for deciding bricks
                 if (emptyRoll > currentEmptyChance)
                 {
-                    brickValue = Random.Range(1, ballMovementScript._ballcount + 8);
+                    brickValue = Random.Range(1, ballMovementScript._ballcount + 3);
                 }
             
                 Vector3 spawnPos = transform.position + new Vector3(j * spacing, i * -spacing, 0);
