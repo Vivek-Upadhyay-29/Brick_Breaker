@@ -6,7 +6,7 @@ public class BallDownBtnScript : MonoBehaviour
     [SerializeField] private BrickSpawner brickSpawner;
     [SerializeField] private GameObject mainBall;
     [SerializeField] private Rigidbody2D gameball;
-
+ 
     
     private void Start()
     {

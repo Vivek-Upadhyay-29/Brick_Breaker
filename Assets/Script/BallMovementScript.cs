@@ -46,6 +46,7 @@ public class BallMovementScript : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 120;
         Screen.orientation = ScreenOrientation.Portrait;
         line = GetComponent<LineRenderer>();
         sprite = GetComponent<SpriteRenderer>();
