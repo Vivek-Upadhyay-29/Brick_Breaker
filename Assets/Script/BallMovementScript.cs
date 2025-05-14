@@ -12,6 +12,7 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private bool isIdle;
     [SerializeField] private Vector2 newStartPos;
     [SerializeField] private Vector2 endPos;
+    [SerializeField] private GameObject BallDownBtnUI;
 
     public float sliderValue;
     public Slider slider;
@@ -22,7 +23,6 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private RaycastHit2D ray;
     [SerializeField] private float angle;
     [SerializeField] private Vector2 minMaxAngle;
-    [SerializeField] private GameObject backdropUI;
 
     [Header("LineRenderer")]
     [SerializeField] private LineRenderer line;
@@ -86,11 +86,16 @@ public class BallMovementScript : MonoBehaviour
             HandleTouchInput(anyBallActive);
             
         }
-            
+   
         
         else if (!Input.GetMouseButton(0))
         {
             line.enabled = false;
+        }
+
+        if (!isMoving && !anyBallActive)
+        {
+            HideBallBtn();
         }
     }
 
@@ -134,7 +139,12 @@ public class BallMovementScript : MonoBehaviour
 
     private void HandleTouchInput(bool anyBallActive)
     {
+      
         Touch touch = Input.GetTouch(0);
+        if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+        {
+            return; 
+        }
         Vector3 touchWorldPos = Camera.main.ScreenToWorldPoint(touch.position);
         Vector2 direction = (Vector2)touchWorldPos - (Vector2)transform.position;
         direction.Normalize();
@@ -167,6 +177,7 @@ public class BallMovementScript : MonoBehaviour
         }
     }
 
+    #region Shooting Coroutine
     IEnumerator Shootball()
     {
         Vector2 shootPosition = transform.position;
@@ -174,7 +185,7 @@ public class BallMovementScript : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        for (int i = 0; i < _ballcount; i++)
+        for (int i = 0; i < _ballcount+ScoreScript.Instance.newBallCountforprefab; i++)
         {
             GameObject ball = ObjectPool.Instance.GetPooledObject();
             if (ball != null)
@@ -190,7 +201,40 @@ public class BallMovementScript : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+        yield return StartCoroutine(ShowBtn());
     }
+
+
+    IEnumerator ShowBtn()
+    {
+        yield return new WaitForSeconds(0.1f);
+        BallDownBtnUI.SetActive(true);
+    
+        yield return  null;
+        
+    }
+
+    public void HideBallBtn()
+    {
+        bool anyBallActive = false;
+        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+        {
+            if (ball.activeInHierarchy)
+            {
+                anyBallActive = true;
+                break;
+            }
+        }
+
+        if (!anyBallActive && !isMoving)
+        {
+            BallDownBtnUI.SetActive(false);
+        }
+
+        
+    }
+
+        #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -204,7 +248,9 @@ public class BallMovementScript : MonoBehaviour
             newStartPos = transform.position;
             rb.velocity = Vector2.zero;
             slider.value = 0;
-            transform.position = new Vector2(newStartPos.x, newStartPos.y);
+            transform.position = new Vector2(newStartPos.x, -3.12f); //fixed
+            Debug.Log(transform.position);
+
             isMoving = false;
             canForceDownBall = true;
             line.transform.position = transform.position;
@@ -213,9 +259,25 @@ public class BallMovementScript : MonoBehaviour
             {
                 presentBallCount++;
             }
-
-            Debug.Log("Position Reset");
-            Debug.Log("Ball Count Present: " + presentBallCount);
+            
+            //ground error
+            // bool anyBallActive = false;
+            //
+            // foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+            // {
+            //     if (ball.activeInHierarchy)
+            //     {
+            //         anyBallActive = true;
+            //         break;
+            //     }
+            // }
+            //
+            // if (!anyBallActive && !isMoving)
+            // {
+            //     boxCollider.enabled = false;
+            //     Debug.Log("Collision Disabled");
+            // }
+           // Debug.Log("Ball Count Present: " + presentBallCount);
         }
     }
 

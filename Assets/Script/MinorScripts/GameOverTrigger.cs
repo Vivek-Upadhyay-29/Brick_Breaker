@@ -27,6 +27,7 @@ public class GameOverTrigger : MonoBehaviour
 
            //resetting all things
            ballMovement._ballcount = 1;
+           ScoreScript.Instance.newBallCountforprefab = 0;
            brickSpawner.spawnedBricks.Clear(); 
            brickSpawner.ResetRowCount();
            brickSpawner.SpawnBrickRow();

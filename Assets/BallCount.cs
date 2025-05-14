@@ -13,10 +13,13 @@ public class BallCount : MonoBehaviour
 
     void Start()
     {
-        text.text = "";
+        // text.text = "";
     }
     private void Update()
     { 
+        
+        int newBallCount = ScoreScript.Instance.newBallCountforprefab;
+        
         bool anyBallActive = false;
         foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
         {
@@ -28,12 +31,13 @@ public class BallCount : MonoBehaviour
         }
         if (anyBallActive)
         {
-            int ballCount = ballMovementScript._ballcount + 1;
-            text.text = ballCount.ToString() +"X"; 
+            text.text = "";
         }
-        // else
-        // {
-        //     text.text = "";
-        // }
+        else
+        {
+            int ballCount = ballMovementScript._ballcount + 1 + newBallCount; ;
+            text.text = ballCount.ToString() +"X";
+           
+        }
     }
 }

@@ -8,6 +8,7 @@ public class ScoreScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField]private int newScore;
     public static ScoreScript Instance;
+    public int newBallCountforprefab = 0;
     
     void Awake()
     {
@@ -44,5 +45,12 @@ public class ScoreScript : MonoBehaviour
         scoreManager.score = 0;
         scoreText.text = scoreManager.score.ToString();
         
+    }
+
+
+    public int BallCountText()
+    {
+        newBallCountforprefab++;
+        return newBallCountforprefab;
     }
 }

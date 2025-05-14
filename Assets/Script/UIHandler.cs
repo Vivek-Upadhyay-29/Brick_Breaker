@@ -29,7 +29,7 @@ public class UIHandler : MonoBehaviour
 
             ballMultiplierPowerup._useTimes = 2;
             ballMultiplierPowerup.textMesh.text = "2";
-            
+            ScoreScript.Instance.newBallCountforprefab = 0;
             ballMovement._ballcount = 1;
             brickSpawner.SpawnBrickRow();
     }

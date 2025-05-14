@@ -28,6 +28,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Brick
       objectReference: {fileID: 0}
+    - target: {fileID: 2551592462272934095, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551592462272934095, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857818606997659889, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7169812
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857818606997659889, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_Color.g
+      value: 0.23899384
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857818606997659889, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3916616589412298185, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -151,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 8557089707118170603, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
       propertyPath: spriteRenderer
       value: 
-      objectReference: {fileID: 4002757827776970751}
+      objectReference: {fileID: 2664916037185155071}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -192,8 +212,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!212 &4002757827776970751 stripped
+--- !u!212 &2664916037185155071 stripped
 SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 3857818606997659889, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2809878484117762289, guid: bc16351cd801f440eb7ad756dbc53852, type: 3}
   m_PrefabInstance: {fileID: 145556219186355982}
   m_PrefabAsset: {fileID: 0}

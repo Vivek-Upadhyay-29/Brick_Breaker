@@ -1,4 +1,5 @@
 using UnityEngine;
+using Image = UnityEngine.UI.Image;
 
 public class BallDownBtnScript : MonoBehaviour
 {
@@ -6,13 +7,30 @@ public class BallDownBtnScript : MonoBehaviour
     [SerializeField] private BrickSpawner brickSpawner;
     [SerializeField] private GameObject mainBall;
     [SerializeField] private Rigidbody2D gameball;
+    [SerializeField] private Image balldownSprite;
  
     
     private void Start()
     {
         gameball = mainBall.GetComponent<Rigidbody2D>();
+
     }
 
+
+    void Update()
+    {
+        bool anyBallActive = false;
+    
+        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+        {
+            if (ball.activeInHierarchy)
+            {
+                anyBallActive = true;
+                break;
+            }
+        }
+
+    }
     public void BallDown()
     {
         bool anyBallActive = false;
@@ -26,7 +44,7 @@ public class BallDownBtnScript : MonoBehaviour
             }
         }
         
-        if (ballMovementScript.isMoving || anyBallActive)
+         if (ballMovementScript.isMoving || anyBallActive)
         {
             foreach (GameObject ball in ballMovementScript.ballClone)
             {

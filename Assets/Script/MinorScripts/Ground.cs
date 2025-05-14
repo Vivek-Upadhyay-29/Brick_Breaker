@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -24,10 +25,11 @@ public class Ground : MonoBehaviour
                     break;
                 }
             }
-
+           
             //fixed this
             if (!anyBallActive && !ballMovement.isMoving)
             {
+                
                 ballMovement.ballClone.Clear();
                 ballMovement.presentBallCount = 0;
                 brickSpawner.MoveDownAndAddNewRow();
