@@ -16,6 +16,9 @@ TagManager:
   - HighscorePanel
   - WallCollider
   - backdrop
+  - UI
+  - MainCanvas
+  - notouch
   layers:
   - Default
   - TransparentFX

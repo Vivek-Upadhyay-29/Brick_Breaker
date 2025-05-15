@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
 
@@ -17,20 +19,7 @@ public class BallDownBtnScript : MonoBehaviour
     }
 
 
-    void Update()
-    {
-        bool anyBallActive = false;
-    
-        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
-        {
-            if (ball.activeInHierarchy)
-            {
-                anyBallActive = true;
-                break;
-            }
-        }
 
-    }
     public void BallDown()
     {
         bool anyBallActive = false;
@@ -52,8 +41,7 @@ public class BallDownBtnScript : MonoBehaviour
                 {
                     Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
                      rb.velocity = Vector2.zero;
-                    ball.SetActive(false);
-                    
+                     StartCoroutine(MoveToResetPos(rb));
                 }
             }
           
@@ -67,9 +55,30 @@ public class BallDownBtnScript : MonoBehaviour
             mainBall.transform.position = ballMovementScript.startPos;
             brickSpawner.MoveDownAndAddNewRow();
         }
-    
-    }
 
+        IEnumerator MoveToResetPos(Rigidbody2D rigidbody2D)
+    {
+        Rigidbody2D rb1 = rigidbody2D;
+        Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
+        float speed = 5f;
+        rb1.velocity = Vector2.zero;
+        rb1.angularVelocity = 0f;
+        rb1.isKinematic = true;
+         
+        while (Vector3.Distance(rb1.transform.position, targetPosition) > 0.05f)
+        {
+            rb1.transform.position = Vector3.MoveTowards(rb1.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+  
+        rb1.transform.position = targetPosition;
+        rb1.isKinematic = false;
+        rb1.gameObject.SetActive(false);
+        
+     
+      }
+    }
+   
  
 }
 

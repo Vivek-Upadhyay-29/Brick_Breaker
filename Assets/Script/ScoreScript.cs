@@ -8,6 +8,8 @@ public class ScoreScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField]private int newScore;
     public static ScoreScript Instance;
+    
+    public Transform resetPosition;
     public int newBallCountforprefab = 0;
     
     void Awake()
