@@ -55,4 +55,6 @@ public class ScoreScript : MonoBehaviour
         newBallCountforprefab++;
         return newBallCountforprefab;
     }
+    
+    
 }

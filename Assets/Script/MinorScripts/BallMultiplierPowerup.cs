@@ -46,12 +46,12 @@ public class BallMultiplierPowerup : MonoBehaviour
 
     IEnumerator ShowPowerup()
     {
-        
         AudioMangerScript.Instance.PlayOneShot(AudioType.POWERUP);
         canvasGroup = powerUpImage.GetComponent<CanvasGroup>();
-     
-        canvasGroup = powerUpImage.AddComponent<CanvasGroup>();
-        
+        if (canvasGroup == null)
+        {
+            canvasGroup = powerUpImage.AddComponent<CanvasGroup>();
+        }
 
         rectTransform = powerUpImage.GetComponent<RectTransform>();
 
