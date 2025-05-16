@@ -7,7 +7,10 @@ public enum AudioType
     BACKGROUND,
     BALL,
     BUTTON,
-    WALLHIT
+    WALLHIT,
+    POWERUP,
+    BALLDOWNBTN,
+    MULTIPLIER
 }
 public class AudioMangerScript : MonoBehaviour
 {

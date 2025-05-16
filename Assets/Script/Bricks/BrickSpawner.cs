@@ -201,7 +201,8 @@ public class BrickSpawner : MonoBehaviour
                 float emptyRoll = Random.value;
                 float currentEmptyChance = GetCurrentEmptyChance();
                 int brickValue = 0;
-
+                
+                //this for deciding bricks
                 if (emptyRoll > currentEmptyChance)
                 {
                     brickValue = Random.Range(1, ballMovementScript._ballcount + 3);
@@ -210,7 +211,8 @@ public class BrickSpawner : MonoBehaviour
                 Vector3 spawnPos = transform.position + new Vector3(j * spacing, i * -spacing, 0);
 
                 if (brickValue == 0)
-                {
+                { 
+                    //yah ball multiplier
                     if (!(Random.value < (1f - gettingPowerupChance)))
                     {
                         GameObject powerUp = BrickPool.Instance.GetPooledPowerUp();
@@ -221,6 +223,7 @@ public class BrickSpawner : MonoBehaviour
                 }
                 else
                 {
+                    //for bricks
                     GameObject brickObj = BrickPool.Instance.GetPooledBrick();
                     brickObj.transform.position = spawnPos;
                     spawnedBricks.Add(brickObj);

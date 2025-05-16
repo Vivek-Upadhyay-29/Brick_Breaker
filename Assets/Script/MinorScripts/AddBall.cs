@@ -10,7 +10,9 @@ public class AddBall : MonoBehaviour
         if (collision.CompareTag("Player") || collision.gameObject.tag == "cloneBall" ) 
         {
        
-            gameObject.SetActive(false); // Deactivate the power-up after the ball collects it
+            AudioMangerScript.Instance.PlayOneShot(AudioType.MULTIPLIER);
+
+            gameObject.SetActive(false);
         }
     }
     void Update() {

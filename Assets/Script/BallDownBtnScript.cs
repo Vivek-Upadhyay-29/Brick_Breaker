@@ -33,7 +33,7 @@ public class BallDownBtnScript : MonoBehaviour
             }
         }
         
-         if (ballMovementScript.isMoving || anyBallActive)
+        if (ballMovementScript.isMoving || anyBallActive)
         {
             foreach (GameObject ball in ballMovementScript.ballClone)
             {
@@ -58,6 +58,8 @@ public class BallDownBtnScript : MonoBehaviour
 
         IEnumerator MoveToResetPos(Rigidbody2D rigidbody2D)
     {
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BALLDOWNBTN);
+
         Rigidbody2D rb1 = rigidbody2D;
         Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
         float speed = 5f;
