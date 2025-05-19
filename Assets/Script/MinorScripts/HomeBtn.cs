@@ -14,6 +14,12 @@ public class HomeBtn : MonoBehaviour
     // Start is called before the first frame update ///HELL
     public void Homebtn()
     {
+       StartCoroutine(ResumeGame());
+    }
+    IEnumerator ResumeGame()
+    {
+        yield return new WaitForSecondsRealtime (0.5f);
+        Time.timeScale = 1;
         currentPanel.SetActive(false);
         gamePanel.SetActive(false);
         nextPanel.SetActive(true);
@@ -31,5 +37,6 @@ public class HomeBtn : MonoBehaviour
         ballMultiplierPowerup.textMesh.text = "2";
         
         brickSpawner.SpawnBrickRow();
+        yield return null;
     }
 }

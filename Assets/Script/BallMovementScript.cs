@@ -254,6 +254,7 @@ public class BallMovementScript : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0;
 
         Application.targetFrameRate = 120;
         Screen.orientation = ScreenOrientation.Portrait;
@@ -305,10 +306,12 @@ public class BallMovementScript : MonoBehaviour
 
             if (results.Count > 0)
             {
+                Debug.Log(results[0].gameObject.name);
                 foreach (RaycastResult hit in results)
                 {
                     if (hit.gameObject.CompareTag("MainCanvas"))
                     {
+                        Debug.Log(hit.gameObject.name);
                         return;
                     }
                 }
@@ -373,6 +376,7 @@ public class BallMovementScript : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            
             // PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
             // eventDataCurrentPosition.position = touch.position;
             // List<RaycastResult> results = new List<RaycastResult>();
@@ -393,7 +397,6 @@ public class BallMovementScript : MonoBehaviour
             // }
 
 
-            // If the touch was not over a UI element with the "MainCanvas" tag, proceed with game logic
             Vector3 touchWorldPos = Camera.main.ScreenToWorldPoint(touch.position);
             Vector2 direction = (Vector2)touchWorldPos - (Vector2)transform.position;
             direction.Normalize();

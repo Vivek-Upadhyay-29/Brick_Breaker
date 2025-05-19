@@ -16,23 +16,54 @@ public class BrickSpawner : MonoBehaviour
     [SerializeField] private float emptyChanceDecreaseRate = 0.05f;
     [Range(0f, 1f)][SerializeField] private float gettingPowerupChance = 0.6f;
     [SerializeField] private float powerUpVerticalOffset = -0.1f;
-
+     public int minValue = 1;
     [SerializeField] private int rowsSpawned = 0;
     private bool isShifting = false;
 
     void Start()
     {
-        LoadBricksFromSave();
-
-        //SpawnBrickRow();
+       //LoadBricksFromSave();
+        SpawnBrickRow();
     }
 
+    void Update()
+    {
+        
+        int newBallCount = ScoreScript.Instance.newBallCountforprefab;
+        if (ballMovementScript._ballcount+ newBallCount <= 8)
+        {
+            minValue = 8;
+        }
+        else if (ballMovementScript._ballcount+ newBallCount > 8 && ballMovementScript._ballcount+ newBallCount <= 12)
+        {
+            minValue = 15;
+        }
+        else if (ballMovementScript._ballcount+ newBallCount  > 12 && ballMovementScript._ballcount+ newBallCount <= 15)
+        {
+            minValue = 20;
+        }
+        else if (ballMovementScript._ballcount + newBallCount > 35)
+        {
+            minValue = 25;
+        }
+        else if (ballMovementScript._ballcount + newBallCount > 55)
+        {
+            
+            minValue = 40;
+        }
+        else if (ballMovementScript._ballcount + newBallCount > 75)
+        {
+            
+            minValue = 50;
+        }
+    }
     private float GetCurrentEmptyChance()
     {
         float currentChance = initialEmptyChance - (rowsSpawned * emptyChanceDecreaseRate);
         return Mathf.Clamp(currentChance, minEmptyChance, 1f);
     }
 
+    
     public void SpawnBrickRow()
     {
         for (int i = 0; i < 2; i++)
@@ -46,7 +77,7 @@ public class BrickSpawner : MonoBehaviour
                 //this for deciding bricks
                 if (emptyRoll > currentEmptyChance)
                 {
-                    brickValue = Random.Range(1, ballMovementScript._ballcount + 3);
+                    brickValue = Random.Range(minValue, ballMovementScript._ballcount + 3);
                 }
 
                 Vector3 spawnPos = transform.position + new Vector3(j * spacing, i * -spacing, 0);
@@ -145,32 +176,32 @@ public class BrickSpawner : MonoBehaviour
     {
         rowsSpawned = 0;
     }
-    public void LoadBricksFromSave()
-    {
-        foreach (var brick in spawnedBricks)
-        {
-            if (brick != null)
-                brick.SetActive(false);
-        }
-        spawnedBricks.Clear();
-
-        SaveDataItem data = SaveData.instance.LoadFromJson();
-
-        foreach (var brickData in data.bricks)
-        {
-            GameObject brick = BrickPool.Instance.GetPooledBrick();
-            if (brick != null)
-            {
-                brick.transform.position = brickData.position;
-                brick.GetComponent<Brick>().SetValue(brickData.brickValue);
-                brick.SetActive(true);
-                spawnedBricks.Add(brick);
-            }
-        }
-
-        rowsSpawned = data.bricks.Count / columns;
-    }
-
+    // public void LoadBricksFromSave()
+    // {
+    //     foreach (var brick in spawnedBricks)
+    //     {
+    //         if (brick != null)
+    //             brick.SetActive(false);
+    //     }
+    //     spawnedBricks.Clear();
+    //
+    //     SaveDataItem data = SaveData.instance.LoadFromJson();
+    //
+    //     foreach (var brickData in data.bricks)
+    //     {
+    //         GameObject brick = BrickPool.Instance.GetPooledBrick();
+    //         if (brick != null)
+    //         {
+    //             brick.transform.position = brickData.position;
+    //             brick.GetComponent<Brick>().SetValue(brickData.brickValue);
+    //             brick.SetActive(true);
+    //             spawnedBricks.Add(brick);
+    //         }
+    //     }
+    //
+    //     rowsSpawned = data.bricks.Count / columns;
+    // }
+    //
 
     IEnumerator TileDown(Transform brick)
     {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
@@ -12,6 +13,32 @@ public class UIHandler : MonoBehaviour
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
+    }
+
+    public void BackPanel()
+    {
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+        StartCoroutine(ResumeGame());
+   
+    }
+
+
+    public void PauseRealTime()
+    {
+        Time.timeScale = 0;
+        Debug.Log("PauseRealTime");
+    }
+    public void RealTimer()
+    {
+        StartCoroutine(ResumeGame());
+    }
+    IEnumerator ResumeGame()
+    {
+        yield return new WaitForSecondsRealtime (0.5f);
+        Time.timeScale = 1;
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
+        yield return null;
     }
     
     public void RestartPanel()
@@ -37,17 +64,25 @@ public class UIHandler : MonoBehaviour
     public void RestartGame()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-       currentPanel.SetActive(false);
+        StartCoroutine(ResumeGamee());
+
+    }
+    IEnumerator ResumeGamee()
+    {
+        yield return new WaitForSecondsRealtime (0.5f);
+        Time.timeScale = 1;
+        currentPanel.SetActive(false);
+        yield return null;
     }
 
     public void QuitGame()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
 
-        SaveData.instance.SaveToJson(
-            ScoreScript.Instance.GetHighScore(),
-            brickSpawner.spawnedBricks
-        );
+        // SaveData.instance.SaveToJson(
+        //     ScoreScript.Instance.GetHighScore(),
+        //     brickSpawner.spawnedBricks
+        // );
 
         Application.Quit();
     }

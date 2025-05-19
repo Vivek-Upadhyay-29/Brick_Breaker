@@ -11,6 +11,7 @@ public class Ground : MonoBehaviour
     
     [SerializeField] private  BallMovementScript ballMovement;
     [SerializeField] private  BrickSpawner brickSpawner;
+    [SerializeField] private Vector3 newBallPosition;
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,13 +22,15 @@ public class Ground : MonoBehaviour
             
             rb = collision.gameObject.GetComponent<Rigidbody2D>();
             StartCoroutine(MoveToResetPos(rb));
+            // newBallPosition  = rb.transform.position ;
         }
        
     } 
     private IEnumerator MoveToResetPos(Rigidbody2D rigidbody2D)
     {
         Rigidbody2D rb1 = rigidbody2D;
-        Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
+    //    Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
+       Vector3 targetPosition = new Vector3(ballMovement.transform.position.x , -3.12f);
         float speed = 5f;
         rb1.velocity = Vector2.zero;
         rb1.angularVelocity = 0f;

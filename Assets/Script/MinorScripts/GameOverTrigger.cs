@@ -14,6 +14,7 @@ public class GameOverTrigger : MonoBehaviour
         if (collision.CompareTag("Multiplier") || collision.CompareTag("clone") || collision.CompareTag("brick"))
         {
             
+            Time.timeScale = 0;
             gameOverpanel.SetActive(true);
             ScoreScript.Instance.Reset();
            for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
@@ -26,6 +27,10 @@ public class GameOverTrigger : MonoBehaviour
            }
 
            //resetting all things
+           // SaveData.instance.SaveToJson(
+           //     ScoreScript.Instance.GetHighScore(),
+           //     brickSpawner.spawnedBricks);
+
            ballMovement._ballcount = 1;
            ScoreScript.Instance.newBallCountforprefab = 0;
            brickSpawner.spawnedBricks.Clear(); 

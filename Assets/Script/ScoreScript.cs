@@ -12,7 +12,7 @@ public class ScoreScript : MonoBehaviour
 
     public Transform resetPosition;
     public int newBallCountforprefab = 0;
-    
+    public int MinBrickValue = 0;
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -43,6 +43,8 @@ public class ScoreScript : MonoBehaviour
             highScoreText.text = scoreManager.highscore.ToString();
         }
     }
+    
+    
     public int GetHighScore()
     {
         return highScore;
@@ -66,6 +68,5 @@ public class ScoreScript : MonoBehaviour
         newBallCountforprefab++;
         return newBallCountforprefab;
     }
-    
     
 }
