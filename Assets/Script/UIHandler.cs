@@ -40,10 +40,43 @@ public class UIHandler : MonoBehaviour
         nextPanel.SetActive(true);
         yield return null;
     }
+
+
+
+    public void RestartGameHome()
+    {
+        StartCoroutine(RestarrtGame());
+    }
+
+    IEnumerator RestarrtGame()
+    {
+        ScoreScript.Instance.Reset();
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+        {
+            if (brickSpawner.spawnedBricks[i]){
+                  
+                brickSpawner.spawnedBricks[i].SetActive(false);
+                  
+            }
+        }
+
+        ballMultiplierPowerup._useTimes = 2;
+        ballMultiplierPowerup.textMesh.text = "2";
+        ScoreScript.Instance.newBallCountforprefab = 0;
+        ballMovement._ballcount = 1;
+        brickSpawner.SpawnBrickRow();
+        yield return new WaitForSecondsRealtime (0.5f);
+        Time.timeScale = 1;
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
+        yield return null;
+    }
+    
     
     public void RestartPanel()
     {
-        ScoreScript.Instance.Reset();
+            ScoreScript.Instance.Reset();
             AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
             for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
             {
@@ -70,7 +103,6 @@ public class UIHandler : MonoBehaviour
     IEnumerator ResumeGamee()
     {
         yield return new WaitForSecondsRealtime (0.5f);
-        Time.timeScale = 1;
         currentPanel.SetActive(false);
         yield return null;
     }
