@@ -43,6 +43,13 @@ public class UIHandler : MonoBehaviour
     public void QuitGame()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+
+        SaveData.instance.SaveToJson(
+            ScoreScript.Instance.GetHighScore(),
+            brickSpawner.spawnedBricks
+        );
+
         Application.Quit();
     }
+
 }

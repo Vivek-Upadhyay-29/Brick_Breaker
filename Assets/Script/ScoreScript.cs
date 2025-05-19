@@ -8,7 +8,8 @@ public class ScoreScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField]private int newScore;
     public static ScoreScript Instance;
-    
+    public int highScore = 0;
+
     public Transform resetPosition;
     public int newBallCountforprefab = 0;
     
@@ -27,6 +28,7 @@ public class ScoreScript : MonoBehaviour
 
     void Start()
     {
+
         Reset();
     }
     // Update is called once per frame
@@ -41,6 +43,15 @@ public class ScoreScript : MonoBehaviour
             highScoreText.text = scoreManager.highscore.ToString();
         }
     }
+    public int GetHighScore()
+    {
+        return highScore;
+    }
+    public int GetCurrentScore()
+    {
+        return scoreManager.score;
+    }
+
 
     public void Reset()
     {

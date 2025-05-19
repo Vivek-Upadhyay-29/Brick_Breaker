@@ -10,7 +10,7 @@ public class Brick : MonoBehaviour
     [SerializeField] private GameObject ScorePanel;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private ParticleSystem particle;
- 
+
     public void SetValue(int value)
     {
         health = value;
@@ -76,5 +76,6 @@ public class Brick : MonoBehaviour
             AudioMangerScript.Instance.PlayOneShot(AudioType.WALLHIT);
         }
     }
+    public int brickValue => health;
+
 }
- 

@@ -9,13 +9,32 @@ public class BallMultiplierPowerup : MonoBehaviour
     [SerializeField] private BallMovementScript ballMovementScript;
     [SerializeField] private GameObject powerUpImage;
     public TextMeshProUGUI textMesh;
+
     private bool isClick = false;
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
 
+    private int nextScoreThreshold = 50;
+
     void Start()
     {
         textMesh.text = _useTimes.ToString();
+    }
+
+    void Update()
+    {
+
+        int currentScore = ScoreScript.Instance.GetCurrentScore();
+
+        if (currentScore >= nextScoreThreshold)
+        {
+            _useTimes++;
+            textMesh.text = _useTimes.ToString();
+
+           
+            int level = (nextScoreThreshold == 50) ? 1 : (nextScoreThreshold / 100);
+            nextScoreThreshold += (level == 1) ? 100 : 150;
+        }
     }
 
     public void Multiplier()
@@ -69,7 +88,6 @@ public class BallMultiplierPowerup : MonoBehaviour
             yield return null;
         }
 
-        // Blink twice (fade alpha to 0.5 then back to 1)
         for (int i = 0; i < 2; i++)
         {
             canvasGroup.alpha = 0.5f;

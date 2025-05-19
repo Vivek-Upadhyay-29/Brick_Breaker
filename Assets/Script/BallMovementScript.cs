@@ -1,9 +1,225 @@
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
+//using UnityEngine.EventSystems;
+//using UnityEngine.UI;
+
+//public class BallMovementScript : MonoBehaviour
+//{
+//    [SerializeField] private Rigidbody2D rb;
+//    [SerializeField] private float speed = 1;
+//    [SerializeField] private bool isIdle;
+//    [SerializeField] private Vector2 newStartPos;
+//    [SerializeField] private Vector2 endPos;
+//    [SerializeField] private GameObject BallDownBtnUI;
+//    public float sliderValue;
+//    public Slider slider;
+//    public bool isMoving;
+
+//    [Header("Raycast")]
+//    [SerializeField] private LayerMask layermask;
+//    [SerializeField] private RaycastHit2D ray;
+//    [SerializeField] private float angle;
+//    [SerializeField] private Vector2 minMaxAngle;
+
+//    [Header("LineRenderer")]
+//    [SerializeField] private LineRenderer line;
+//    [SerializeField] private bool useRay = true;
+//    [SerializeField] private bool useLine = true;
+
+//    [Header("Ball Prefab")]
+//    [SerializeField] private SpriteRenderer sprite;
+//    public List<GameObject> ballClone;
+//    public bool _isCloned;
+//    public int _ballcount = 1;
+//    public int presentBallCount;
+//    public bool canForceDownBall = true;
+//    public Vector2 startPos;
+
+//    void Start()
+//    {
+//        Application.targetFrameRate = 120;
+//        Screen.orientation = ScreenOrientation.Portrait;
+//        line = GetComponent<LineRenderer>();
+//        sprite = GetComponent<SpriteRenderer>();
+//        rb = GetComponent<Rigidbody2D>();
+//        startPos = transform.position;
+//        line.enabled = false;
+//        _isCloned = false;
+//        AudioMangerScript.Instance.BackgroundMusic(AudioType.BACKGROUND);
+//    }
+
+//    void Update()
+//    {
+//        bool anyBallActive = false;
+//        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+//        {
+//            if (ball.activeInHierarchy)
+//            {
+//                anyBallActive = true;
+//                break;
+//            }
+//        }
+
+//        sliderValue = slider.value;
+//        transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
+
+//        // Ignore input over UI
+//        if (EventSystem.current.IsPointerOverGameObject())
+//        {
+//            line.enabled = false;
+//            return;
+//        }
+
+//        if (Input.GetMouseButton(0))
+//        {
+//            RayCheck();
+//        }
+//        else if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue != 0 && !anyBallActive)
+//        {
+//            StartCoroutine(Shootball());
+//            isMoving = true;
+//            canForceDownBall = false;
+//            rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+//        }
+//        else if (!Input.GetMouseButton(0))
+//        {
+//            line.enabled = false;
+//        }
+
+//        if (!isMoving && !anyBallActive)
+//        {
+//            HideBallBtn();
+//        }
+//    }
+
+//    public void RayCheck()
+//    {
+//        bool anyBallActive = false;
+//        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+//        {
+//            if (ball.activeInHierarchy)
+//            {
+//                anyBallActive = true;
+//                break;
+//            }
+//        }
+
+//        if (!isMoving && sliderValue != 0 && !anyBallActive)
+//        {
+//            line.enabled = true;
+//            ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask);
+//            Vector2 reflectPos = Vector2.Reflect(ray.point - (Vector2)transform.position, ray.normal);
+
+//            if (useRay)
+//            {
+//                Debug.DrawRay(transform.position, transform.up * ray.distance, Color.red);
+//                Debug.DrawRay(ray.point, reflectPos.normalized * 2f, Color.green);
+//            }
+
+//            if (useLine)
+//            {
+//                line.positionCount = 3;
+//                line.SetPosition(0, transform.position);
+//                line.SetPosition(1, ray.point);
+//                line.SetPosition(2, ray.point + reflectPos.normalized * 2f);
+//            }
+//        }
+//        else
+//        {
+//            line.enabled = false;
+//        }
+//    }
+
+//    #region Shooting Coroutine
+//    IEnumerator Shootball()
+//    {
+//        Vector2 shootPosition = transform.position;
+//        Vector2 shootDirection = transform.up.normalized;
+//        yield return new WaitForSeconds(0.1f);
+
+//        for (int i = 0; i < _ballcount + ScoreScript.Instance.newBallCountforprefab; i++)
+//        {
+//            GameObject ball = ObjectPool.Instance.GetPooledObject();
+//            if (ball != null)
+//            {
+//                ball.transform.position = shootPosition;
+//                ball.SetActive(true);
+//                ballClone.Add(ball);
+//                Rigidbody2D ballRb = ball.GetComponent<Rigidbody2D>();
+//                ballRb.velocity = Vector2.zero;
+//                ballRb.AddForce(shootDirection * speed, ForceMode2D.Impulse);
+//            }
+//            yield return new WaitForSeconds(0.1f);
+//        }
+//        yield return StartCoroutine(ShowBtn());
+//    }
+
+//    IEnumerator ShowBtn()
+//    {
+//        yield return new WaitForSeconds(0.1f);
+//        BallDownBtnUI.SetActive(true);
+//        yield return null;
+//    }
+
+//    public void HideBallBtn()
+//    {
+//        bool anyBallActive = false;
+//        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+//        {
+//            if (ball.activeInHierarchy)
+//            {
+//                anyBallActive = true;
+//                break;
+//            }
+//        }
+
+//        if (!anyBallActive && !isMoving)
+//        {
+//            BallDownBtnUI.SetActive(false);
+//        }
+//    }
+//    #endregion
+
+//    private void OnCollisionEnter2D(Collision2D collision)
+//    {
+//        if (collision.gameObject.CompareTag("WallCollider"))
+//        {
+//            AudioMangerScript.Instance.PlayOneShot(AudioType.WALLHIT);
+//        }
+
+//        if (collision.gameObject.CompareTag("ground"))
+//        {
+//            newStartPos = transform.position;
+//            rb.velocity = Vector2.zero;
+//            slider.value = 0;
+//            transform.position = new Vector2(newStartPos.x, -3.12f); // fixed
+//            isMoving = false;
+//            canForceDownBall = true;
+//            line.transform.position = transform.position;
+
+//            foreach (var balls in ballClone)
+//            {
+//                presentBallCount++;
+//            }
+//        }
+//    }
+
+//    private void OnTriggerEnter2D(Collider2D collision)
+//    {
+//        if (collision.gameObject.CompareTag("Multiplier"))
+//        {
+//            _ballcount++;
+//            Debug.Log("Ball Count: " + _ballcount);
+//        }
+//    }
+//}
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
- 
+
 public class BallMovementScript : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
@@ -21,12 +237,12 @@ public class BallMovementScript : MonoBehaviour
     [SerializeField] private RaycastHit2D ray;
     [SerializeField] private float angle;
     [SerializeField] private Vector2 minMaxAngle;
- 
+
     [Header("LineRenderer")]
     [SerializeField] private LineRenderer line;
     [SerializeField] private bool useRay = true;
     [SerializeField] private bool useLine = true;
- 
+
     [Header("Ball Prefab")]
     [SerializeField] private SpriteRenderer sprite;
     public List<GameObject> ballClone;
@@ -35,7 +251,7 @@ public class BallMovementScript : MonoBehaviour
     public int presentBallCount;
     public bool canForceDownBall = true;
     public Vector2 startPos;
- 
+
     void Start()
     {
 
@@ -49,7 +265,7 @@ public class BallMovementScript : MonoBehaviour
         _isCloned = false;
         AudioMangerScript.Instance.BackgroundMusic(AudioType.BACKGROUND);
     }
- 
+
     void Update()
     {
         bool anyBallActive = false;
@@ -61,15 +277,15 @@ public class BallMovementScript : MonoBehaviour
                 break;
             }
         }
- 
+
         sliderValue = slider.value;
         transform.rotation = Quaternion.Euler(0, 0, -sliderValue * 80);
- 
+
         if (Input.GetMouseButton(0))
         {
             RayCheck();
         }
- 
+
         if (Input.GetMouseButtonUp(0) && !isMoving && sliderValue != 0 && !anyBallActive)
         {
             StartCoroutine(Shootball());
@@ -77,43 +293,43 @@ public class BallMovementScript : MonoBehaviour
             canForceDownBall = false;
             rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
         }
- 
+
         // Touch input
         if (Input.touchCount > 0 && !anyBallActive)
-        { 
+        {
             Touch touch = Input.GetTouch(0);
             PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
             eventDataCurrentPosition.position = touch.position;
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
- 
+
             if (results.Count > 0)
             {
                 foreach (RaycastResult hit in results)
                 {
-                   if (hit.gameObject.CompareTag("MainCanvas"))
-                   {
-                        return; 
-                   }
+                    if (hit.gameObject.CompareTag("MainCanvas"))
+                    {
+                        return;
+                    }
                 }
             }
             else
             {
-             HandleTouchInput(anyBallActive);
-                
+                HandleTouchInput(anyBallActive);
+
             }
         }
         else if (!Input.GetMouseButton(0))
         {
             line.enabled = false;
         }
- 
+
         if (!isMoving && !anyBallActive)
         {
             HideBallBtn();
         }
     }
- 
+
     public void RayCheck()
     {
         bool anyBallActive = false;
@@ -125,19 +341,19 @@ public class BallMovementScript : MonoBehaviour
                 break;
             }
         }
- 
+
         if (!isMoving && sliderValue != 0 && !anyBallActive)
         {
             line.enabled = true;
             ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask);
             Vector2 reflectPos = Vector2.Reflect(ray.point - (Vector2)transform.position, ray.normal);
- 
+
             if (useRay)
             {
                 Debug.DrawRay(transform.position, transform.up * ray.distance, Color.red);
                 Debug.DrawRay(ray.point, reflectPos.normalized * 2f, Color.green);
             }
- 
+
             if (useLine)
             {
                 line.positionCount = 3;
@@ -151,7 +367,7 @@ public class BallMovementScript : MonoBehaviour
             line.enabled = false;
         }
     }
- 
+
     private void HandleTouchInput(bool anyBallActive)
     {
         if (Input.touchCount > 0)
@@ -175,20 +391,20 @@ public class BallMovementScript : MonoBehaviour
             //         }
             //     }
             // }
-    
- 
+
+
             // If the touch was not over a UI element with the "MainCanvas" tag, proceed with game logic
             Vector3 touchWorldPos = Camera.main.ScreenToWorldPoint(touch.position);
             Vector2 direction = (Vector2)touchWorldPos - (Vector2)transform.position;
             direction.Normalize();
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
- 
+
             if (angle >= minMaxAngle.x && angle <= minMaxAngle.y)
             {
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 ray = Physics2D.Raycast(transform.position, transform.up, 20f, layermask);
                 Vector2 reflectPos = Vector2.Reflect(ray.point - (Vector2)transform.position, ray.normal);
- 
+
                 if (useLine)
                 {
                     line.enabled = true;
@@ -197,7 +413,7 @@ public class BallMovementScript : MonoBehaviour
                     line.SetPosition(1, ray.point);
                     line.SetPosition(2, ray.point + reflectPos.normalized * 2f);
                 }
- 
+
                 if (touch.phase == TouchPhase.Ended && !isMoving && !anyBallActive)
                 {
                     StartCoroutine(Shootball());
@@ -212,14 +428,14 @@ public class BallMovementScript : MonoBehaviour
             }
         }
     }
- 
+
     #region Shooting Coroutine
     IEnumerator Shootball()
     {
         Vector2 shootPosition = transform.position;
         Vector2 shootDirection = transform.up.normalized;
         yield return new WaitForSeconds(0.1f);
- 
+
         for (int i = 0; i < _ballcount + ScoreScript.Instance.newBallCountforprefab; i++)
         {
             GameObject ball = ObjectPool.Instance.GetPooledObject();
@@ -236,14 +452,14 @@ public class BallMovementScript : MonoBehaviour
         }
         yield return StartCoroutine(ShowBtn());
     }
- 
+
     IEnumerator ShowBtn()
     {
         yield return new WaitForSeconds(0.1f);
         BallDownBtnUI.SetActive(true);
         yield return null;
     }
- 
+
     public void HideBallBtn()
     {
         bool anyBallActive = false;
@@ -255,21 +471,21 @@ public class BallMovementScript : MonoBehaviour
                 break;
             }
         }
- 
+
         if (!anyBallActive && !isMoving)
         {
             BallDownBtnUI.SetActive(false);
         }
     }
     #endregion
- 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("WallCollider"))
         {
             AudioMangerScript.Instance.PlayOneShot(AudioType.WALLHIT);
         }
- 
+
         if (collision.gameObject.CompareTag("ground"))
         {
             newStartPos = transform.position;
@@ -304,7 +520,7 @@ public class BallMovementScript : MonoBehaviour
             // Debug.Log("Ball Count Present: " + presentBallCount);
         }
     }
- 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Multiplier"))
