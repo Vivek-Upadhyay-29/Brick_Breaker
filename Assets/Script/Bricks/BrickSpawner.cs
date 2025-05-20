@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -20,10 +20,52 @@ public class BrickSpawner : MonoBehaviour
     [SerializeField] private int rowsSpawned = 0;
     private bool isShifting = false;
 
+
+
+
+
+    public GameObject brickPrefab;
+
+    public void LoadBricksFromSave()
+    {
+        SaveDataItem data = SaveData.instance.LoadFromJson();
+        ScoreScript.Instance.SaveHighScore(data.Highscore);
+        ScoreScript.Instance.newBallCountforprefab = data.BonusBallCount;
+
+        foreach (var brick in spawnedBricks)
+        {
+            if (brick != null)
+                Destroy(brick);
+        }
+
+        spawnedBricks.Clear();
+
+        foreach (var brickData in data.bricks)
+        {
+            GameObject brick = Instantiate(brickPrefab, brickData.position, Quaternion.identity);
+            Brick brickComponent = brick.GetComponent<Brick>();
+            if (brickComponent != null)
+            {
+                brickComponent.SetValue(brickData.brickValue);
+            }
+            spawnedBricks.Add(brick);
+        }
+    }
+
     void Start()
     {
-       //LoadBricksFromSave();
-        SpawnBrickRow();
+
+
+        bool saveExists = System.IO.File.Exists(Application.persistentDataPath + "/saveBrickData.json");
+
+        if (saveExists && SaveData.instance != null)
+        {
+            LoadBricksFromSave();
+        }
+        else
+        {
+            SpawnBrickRow();
+        }
     }
 
     void Update()
@@ -220,4 +262,5 @@ public class BrickSpawner : MonoBehaviour
 
         brick.position = end;
     }
+
 }

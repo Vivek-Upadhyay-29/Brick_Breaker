@@ -73,26 +73,33 @@ public class UIHandler : MonoBehaviour
         yield return null;
     }
     
-    
     public void RestartPanel()
-    {
-            ScoreScript.Instance.Reset();
-            AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-            for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
-            {
-                if (brickSpawner.spawnedBricks[i]){
-                  
-                    brickSpawner.spawnedBricks[i].SetActive(false);
-                  
-                }
-            }
+{
+    ScoreScript.Instance.Reset();
+    AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
 
-            ballMultiplierPowerup._useTimes = 2;
-            ballMultiplierPowerup.textMesh.text = "2";
-            ScoreScript.Instance.newBallCountforprefab = 0;
-            ballMovement._ballcount = 1;
-            brickSpawner.SpawnBrickRow();
+
+
+        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+        {
+            if (brickSpawner.spawnedBricks[i])
+            {
+
+                brickSpawner.spawnedBricks[i].SetActive(false);
+
+            }
+        }
+
+        ballMultiplierPowerup._useTimes = 2;
+        brickSpawner.ResetRowCount();
+
+        ballMultiplierPowerup.textMesh.text = "2";
+        ScoreScript.Instance.newBallCountforprefab = 0;
+
+        ballMovement._ballcount = 1;
+        brickSpawner.SpawnBrickRow();
     }
+       
  
     public void RestartGame()
     {

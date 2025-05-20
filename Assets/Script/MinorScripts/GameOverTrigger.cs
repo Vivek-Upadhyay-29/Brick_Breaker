@@ -11,33 +11,82 @@ public class GameOverTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
+
+        //if (collision.CompareTag("Multiplier") || collision.CompareTag("clone") || collision.CompareTag("brick"))
+        //{
+
+        //    Time.timeScale = 0;
+        //    gameOverpanel.SetActive(true);
+        //    ScoreScript.Instance.Reset();
+        //   for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+        //   {
+        //       if (brickSpawner.spawnedBricks[i]){
+
+        //           brickSpawner.spawnedBricks[i].SetActive(false);
+        //           brickSpawner.spawnedBricks[i].transform.SetParent(null); 
+        //       }
+        //   }
+
+        //   //resetting all things
+        //   // SaveData.instance.SaveToJson(
+        //   //     ScoreScript.Instance.GetHighScore(),
+        //   //     brickSpawner.spawnedBricks);
+
+        //   ballMovement._ballcount = 1;
+        //   ScoreScript.Instance.newBallCountforprefab = 0;
+        //   brickSpawner.spawnedBricks.Clear(); 
+        //   brickSpawner.ResetRowCount();
+        //   brickSpawner.SpawnBrickRow();
+        //}
+
         if (collision.CompareTag("Multiplier") || collision.CompareTag("clone") || collision.CompareTag("brick"))
         {
-            
             Time.timeScale = 0;
             gameOverpanel.SetActive(true);
+
+            SaveData.instance.SaveToJson(
+                ScoreScript.Instance.GetHighScore(),
+                brickSpawner.spawnedBricks
+            );
             ScoreScript.Instance.Reset();
-           for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
-           {
-               if (brickSpawner.spawnedBricks[i]){
-                  
-                   brickSpawner.spawnedBricks[i].SetActive(false);
-                   brickSpawner.spawnedBricks[i].transform.SetParent(null); 
-               }
-           }
 
-           //resetting all things
-           // SaveData.instance.SaveToJson(
-           //     ScoreScript.Instance.GetHighScore(),
-           //     brickSpawner.spawnedBricks);
+            //foreach (var brick in brickSpawner.spawnedBricks)
+            //{
+            //    if (brick)
+            //    { 
 
-           ballMovement._ballcount = 1;
-           ScoreScript.Instance.newBallCountforprefab = 0;
-           brickSpawner.spawnedBricks.Clear(); 
-           brickSpawner.ResetRowCount();
-           brickSpawner.SpawnBrickRow();
+            //        brick.SetActive(false);
+            //        brick.transform.SetParent(null);
+            //    }
+            //}
+            foreach (var brick in brickSpawner.spawnedBricks)
+            {
+                if (brick)
+                {
+                    Brick brickComponent = brick.GetComponent<Brick>();
+                    if (brickComponent != null)
+                    {
+                        brickComponent.SetValue(0); 
+                    }
+                    brick.SetActive(false);
+                }
+            }
+
+
+
+
+            ballMovement._ballcount = 1;
+            ScoreScript.Instance.newBallCountforprefab = 0;
+            
+            brickSpawner.spawnedBricks.Clear();
+            brickSpawner.ResetRowCount();
+          
+            ScoreScript.Instance.Reset();
+            brickSpawner.SpawnBrickRow();
         }
-        
+
     }
  
 

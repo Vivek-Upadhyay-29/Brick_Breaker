@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +8,14 @@ public class SaveData : MonoBehaviour
     public static SaveData instance;
     public SaveDataItem saveData = new SaveDataItem();
 
+    private string savePath => Application.persistentDataPath + "/saveBrickData.json";
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -24,6 +26,7 @@ public class SaveData : MonoBehaviour
     public void SaveToJson(int highscore, List<GameObject> bricks)
     {
         saveData.Highscore = highscore;
+        saveData.BonusBallCount = ScoreScript.Instance.newBallCountforprefab;
         saveData.bricks = new List<BrickData>();
 
         foreach (var brick in bricks)
@@ -43,18 +46,16 @@ public class SaveData : MonoBehaviour
             }
         }
 
-        string json = JsonUtility.ToJson(saveData);
-        File.WriteAllText(Application.persistentDataPath + "/saveBrickData.json", json);
+        string json = JsonUtility.ToJson(saveData, true);
+        File.WriteAllText(savePath, json);
         Debug.Log("Game Saved");
     }
 
     public SaveDataItem LoadFromJson()
     {
-        string path = Application.persistentDataPath + "/saveBrickData.json";
-
-        if (File.Exists(path))
+        if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(path);
+            string json = File.ReadAllText(savePath);
             saveData = JsonUtility.FromJson<SaveDataItem>(json);
             Debug.Log("Game Loaded");
         }
@@ -65,12 +66,23 @@ public class SaveData : MonoBehaviour
 
         return saveData;
     }
+
+    public void DeleteSave()
+    {
+        if (File.Exists(savePath))
+        {
+            File.Delete(savePath);
+            Debug.Log("Save file deleted");
+        }
+    }
 }
 
 [Serializable]
 public class SaveDataItem
 {
     public int Highscore;
+    public int BallCount;
+    public int BonusBallCount;
     public List<BrickData> bricks = new List<BrickData>();
 }
 

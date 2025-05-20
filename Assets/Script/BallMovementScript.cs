@@ -532,4 +532,24 @@ public class BallMovementScript : MonoBehaviour
             Debug.Log("Ball Count: " + _ballcount);
         }
     }
+    public void CheckAllBallsStoppedAndMoveBricks(BrickSpawner brickSpawner)
+    {
+        bool anyBallActive = false;
+        foreach (GameObject ball in ObjectPool.Instance.pooledObjects)
+        {
+            if (ball.activeInHierarchy)
+            {
+                anyBallActive = true;
+                break;
+            }
+        }
+
+        if (!anyBallActive && !isMoving)
+        {
+            ballClone.Clear();
+            presentBallCount = 0;
+            brickSpawner.MoveDownAndAddNewRow();
+        }
+    }
+
 }
