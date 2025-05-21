@@ -27,32 +27,69 @@ public class BrickSpawner : MonoBehaviour
 
     public GameObject brickPrefab;
 
+    // public void LoadBricksFromSave()
+    // {
+    //     SaveDataItem data = SaveData.instance.LoadFromJson();
+    //     ScoreScript.Instance.SaveHighScore(data.Highscore);
+    //     ScoreScript.Instance.SetScore(data.CurrentScore);
+    //     ScoreScript.Instance.newBallCountforprefab = data.BonusBallCount;
+    //
+    //     ScoreScript.Instance.SetScore(data.CurrentScore);
+    //
+    //     foreach (var brick in spawnedBricks)
+    //     {
+    //         if (brick != null)
+    //             Destroy(brick);
+    //     }
+    //
+    //     spawnedBricks.Clear();
+    //
+    //     foreach (var brickData in data.bricks)
+    //     {
+    //         GameObject brick = Instantiate(brickPrefab, brickData.position, Quaternion.identity);
+    //         Brick brickComponent = brick.GetComponent<Brick>();
+    //         if (brickComponent != null)
+    //         {
+    //             brickComponent.SetValue(brickData.brickValue);
+    //         }
+    //         spawnedBricks.Add(brick);
+    //     }
+    // }
+
     public void LoadBricksFromSave()
     {
         SaveDataItem data = SaveData.instance.LoadFromJson();
+
         ScoreScript.Instance.SaveHighScore(data.Highscore);
         ScoreScript.Instance.SetScore(data.CurrentScore);
-        ScoreScript.Instance.newBallCountforprefab = data.BonusBallCount;
+        ScoreScript.Instance.newBallCountforprefab   = data.BonusBallCount;
 
-        ScoreScript.Instance.SetScore(data.CurrentScore);
-
-        foreach (var brick in spawnedBricks)
+        foreach (var obj in spawnedBricks)
         {
-            if (brick != null)
-                Destroy(brick);
+            if (obj != null)
+                Destroy(obj);
         }
-
         spawnedBricks.Clear();
 
         foreach (var brickData in data.bricks)
         {
             GameObject brick = Instantiate(brickPrefab, brickData.position, Quaternion.identity);
+           
             Brick brickComponent = brick.GetComponent<Brick>();
             if (brickComponent != null)
             {
                 brickComponent.SetValue(brickData.brickValue);
             }
             spawnedBricks.Add(brick);
+        }
+
+        foreach (var powerUpData in data.powerUps)
+        {
+            GameObject powerUp = BrickPool.Instance.GetPooledPowerUp(); 
+            powerUp.transform.position = powerUpData.position;
+            powerUp.SetActive(true);
+
+            spawnedBricks.Add(powerUp);
         }
     }
 
@@ -124,8 +161,7 @@ public class BrickSpawner : MonoBehaviour
                 brick.SetActive(false);
         }
 
-        ///////
-        ///
+        
 
         for (int i = 0; i < 2; i++)
         {

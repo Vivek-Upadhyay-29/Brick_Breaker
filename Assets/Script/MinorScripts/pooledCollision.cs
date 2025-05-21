@@ -141,23 +141,7 @@ public class pooledCollision : MonoBehaviour
             ScoreScript.Instance.BallCountText();
         }
     }
-    // private IEnumerator MoveToResetPos()
-    //  {
-    //      Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
-    //      float speed = 5f;
-    //      rb.velocity = Vector2.zero;
-    //      rb.angularVelocity = 0f;
-    //      rb.isKinematic = true;
-    //      
-    //      while (Vector3.Distance(transform.position, targetPosition) > 0.05f)
-    //      {
-    //          transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
-    //          yield return null;
-    //      }
-    //
-    //      transform.position = targetPosition;
-    //      rb.isKinematic = false;
-    //      gameObject.SetActive(false);
-    //  }
+
+  
 }
 

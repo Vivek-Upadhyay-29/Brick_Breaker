@@ -113,8 +113,6 @@ public class BallDownBtnScript : MonoBehaviour
 
     }
 
-
-
     public void BallDown()
     {
         bool anyBallActive = false;
@@ -153,7 +151,7 @@ public class BallDownBtnScript : MonoBehaviour
 
         IEnumerator MoveToResetPos(Rigidbody2D rigidbody2D)
     {
-        AudioMangerScript.Instance.PlayOneShot(AudioType.BALLDOWNBTN);
+         AudioMangerScript.Instance.PlayOneShot(AudioType.BALLDOWNBTN);
         Rigidbody2D rb1 = rigidbody2D;
         Vector3 targetPosition = ScoreScript.Instance.resetPosition.position;
         float speed = 5f;
@@ -166,7 +164,7 @@ public class BallDownBtnScript : MonoBehaviour
             rb1.transform.position = Vector3.MoveTowards(rb1.position, targetPosition, speed * Time.deltaTime);
             yield return null;
         }
-  
+        
         rb1.transform.position = targetPosition;
         rb1.isKinematic = false;
         rb1.gameObject.SetActive(false);

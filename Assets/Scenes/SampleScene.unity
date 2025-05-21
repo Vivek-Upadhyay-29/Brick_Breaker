@@ -2977,12 +2977,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f830cd1424324e9399a86f0c1cb2f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballMovementScript: {fileID: 799860581}
   saveData:
     Highscore: 0
     BallCount: 0
     BonusBallCount: 0
     CurrentScore: 0
     bricks: []
+    powerUps: []
 --- !u!4 &434978042
 Transform:
   m_ObjectHideFlags: 0
@@ -3857,7 +3859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &617247263
 RectTransform:
   m_ObjectHideFlags: 0

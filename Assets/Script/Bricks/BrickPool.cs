@@ -104,26 +104,50 @@ public class BrickPool : MonoBehaviour
                 return brick;
             }
         }
-    GameObject newBrick = Instantiate(brickPrefab);
+        GameObject newBrick = Instantiate(brickPrefab);
         newBrick.SetActive(false);
         pooledBricks.Add(newBrick);
         return newBrick;
     }
-
+    
+    
     public GameObject GetPooledPowerUp()
     {
-        foreach (var powerup in pooledPowerUps)
+        for (int i = pooledPowerUps.Count - 1; i >= 0; i--)
         {
-            if (!powerup.activeInHierarchy)
+            if (pooledPowerUps[i] == null)
             {
-                return powerup;
+                pooledPowerUps.RemoveAt(i);
+                continue;
+            }
+ 
+            if (!pooledPowerUps[i].activeInHierarchy)
+            {
+                return pooledPowerUps[i];
             }
         }
-
+ 
         GameObject newPowerUp = Instantiate(powerUpPrefab);
         newPowerUp.SetActive(false);
         pooledPowerUps.Add(newPowerUp);
         return newPowerUp;
     }
+
+
+    // public GameObject GetPooledPowerUp()
+    // {
+    //     foreach (var powerup in pooledPowerUps)
+    //     {
+    //         if (!powerup.activeInHierarchy)
+    //         {
+    //             return powerup;
+    //         }
+    //     }
+    //
+    //     GameObject newPowerUp = Instantiate(powerUpPrefab);
+    //     newPowerUp.SetActive(false);
+    //     pooledPowerUps.Add(newPowerUp);
+    //     return newPowerUp;
+    // }
 }
 
