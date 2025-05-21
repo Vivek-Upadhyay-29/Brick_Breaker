@@ -77,9 +77,7 @@ public class UIHandler : MonoBehaviour
     //{
     //    ScoreScript.Instance.Reset();
     //    AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-
-
-
+    
     //        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
     //        {
     //            if (brickSpawner.spawnedBricks[i])
@@ -133,21 +131,34 @@ public class UIHandler : MonoBehaviour
     IEnumerator ResumeGamee()
     {
         yield return new WaitForSecondsRealtime (0.5f);
+        Time.timeScale = 1;
         currentPanel.SetActive(false);
         yield return null;
     }
 
+    // public void QuitGame()
+    // {
+    //     AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+    //
+    //     SaveData.instance.SaveToJson(
+    //         ScoreScript.Instance.GetHighScore(),
+    //         brickSpawner.spawnedBricks
+    //     );
+    //
+    //     Application.Quit();
+    // }
     public void QuitGame()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-
+ 
         SaveData.instance.SaveToJson(
             ScoreScript.Instance.GetHighScore(),
-            brickSpawner.spawnedBricks
+            FindObjectOfType<BrickSpawner>().spawnedBricks
         );
-
+ 
         Application.Quit();
     }
+
 
 
 }

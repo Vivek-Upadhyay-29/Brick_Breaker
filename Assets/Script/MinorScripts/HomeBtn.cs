@@ -11,7 +11,8 @@ public class HomeBtn : MonoBehaviour
     [SerializeField] private  BallMultiplierPowerup  ballMultiplierPowerup;
 
     public BallMovementScript ballMovement;
-    // Start is called before the first frame update ///HELL
+    
+    
     public void Homebtn()
     {
        StartCoroutine(ResumeGame());
@@ -19,7 +20,7 @@ public class HomeBtn : MonoBehaviour
     IEnumerator ResumeGame()
     {
         yield return new WaitForSecondsRealtime (0.5f);
-        Time.timeScale = 1;
+        // Time.timeScale = 1;
         currentPanel.SetActive(false);
         gamePanel.SetActive(false);
         nextPanel.SetActive(true);
