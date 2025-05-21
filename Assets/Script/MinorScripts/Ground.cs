@@ -85,6 +85,29 @@ public class Ground : MonoBehaviour
         }
     }
 
+    //private IEnumerator MoveToResetPos(Rigidbody2D rb1)
+    //{
+    //    Vector3 targetPosition = new Vector3(ballMovement.transform.position.x, -3.12f);
+    //    float speed = 5f;
+
+    //    rb1.velocity = Vector2.zero;
+    //    rb1.angularVelocity = 0f;
+    //    rb1.isKinematic = true;
+
+    //    while (Vector3.Distance(rb1.transform.position, targetPosition) > 0.05f)
+    //    {
+    //        rb1.transform.position = Vector3.MoveTowards(rb1.position, targetPosition, speed * Time.deltaTime);
+    //        yield return null;
+    //    }
+
+    //    rb1.transform.position = targetPosition;
+    //    rb1.isKinematic = false;
+    //    rb1.gameObject.SetActive(false);
+    //   yield return new WaitForEndOfFrame();
+
+
+    //  ballMovement.CheckAllBallsStoppedAndMoveBricks(brickSpawner);
+    //}
     private IEnumerator MoveToResetPos(Rigidbody2D rb1)
     {
         Vector3 targetPosition = new Vector3(ballMovement.transform.position.x, -3.12f);
@@ -103,9 +126,10 @@ public class Ground : MonoBehaviour
         rb1.transform.position = targetPosition;
         rb1.isKinematic = false;
         rb1.gameObject.SetActive(false);
-       yield return new WaitForEndOfFrame();
 
+        yield return null;
 
-   ballMovement.CheckAllBallsStoppedAndMoveBricks(brickSpawner);
+        ballMovement.CheckAllBallsStoppedAndMoveBricks(brickSpawner);
     }
+
 }
