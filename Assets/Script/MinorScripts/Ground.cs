@@ -106,6 +106,6 @@ public class Ground : MonoBehaviour
        yield return new WaitForEndOfFrame();
 
 
-      ballMovement.CheckAllBallsStoppedAndMoveBricks(brickSpawner);
+   ballMovement.CheckAllBallsStoppedAndMoveBricks(brickSpawner);
     }
 }

@@ -72,35 +72,58 @@ public class UIHandler : MonoBehaviour
         nextPanel.SetActive(true);
         yield return null;
     }
-    
+
+    //    public void RestartPanel()
+    //{
+    //    ScoreScript.Instance.Reset();
+    //    AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+
+
+
+    //        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+    //        {
+    //            if (brickSpawner.spawnedBricks[i])
+    //            {
+
+    //                brickSpawner.spawnedBricks[i].SetActive(false);
+
+    //            }
+    //        }
+
+    //        ballMultiplierPowerup._useTimes = 2;
+    //        brickSpawner.ResetRowCount();
+
+    //        ballMultiplierPowerup.textMesh.text = "2";
+    //        ScoreScript.Instance.newBallCountforprefab = 0;
+
+    //        ballMovement._ballcount = 1;
+    //        brickSpawner.SpawnBrickRow();
+    //    }
+
     public void RestartPanel()
-{
-    ScoreScript.Instance.Reset();
-    AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
+    {
+        ScoreScript.Instance.Reset();
+        AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
 
-
-
-        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+        foreach (GameObject brick in brickSpawner.spawnedBricks)
         {
-            if (brickSpawner.spawnedBricks[i])
+            if (brick != null)
             {
-
-                brickSpawner.spawnedBricks[i].SetActive(false);
-
+                brick.SetActive(false);
             }
         }
 
-        ballMultiplierPowerup._useTimes = 2;
-        brickSpawner.ResetRowCount();
+        brickSpawner.spawnedBricks.Clear(); 
+        brickSpawner.ResetRowCount();      
 
+        ballMultiplierPowerup._useTimes = 2;
         ballMultiplierPowerup.textMesh.text = "2";
         ScoreScript.Instance.newBallCountforprefab = 0;
-
         ballMovement._ballcount = 1;
+
         brickSpawner.SpawnBrickRow();
     }
-       
- 
+
     public void RestartGame()
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
@@ -118,12 +141,13 @@ public class UIHandler : MonoBehaviour
     {
         AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
 
-        // SaveData.instance.SaveToJson(
-        //     ScoreScript.Instance.GetHighScore(),
-        //     brickSpawner.spawnedBricks
-        // );
+        SaveData.instance.SaveToJson(
+            ScoreScript.Instance.GetHighScore(),
+            brickSpawner.spawnedBricks
+        );
 
         Application.Quit();
     }
+
 
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class BrickSpawner : MonoBehaviour
@@ -30,7 +31,10 @@ public class BrickSpawner : MonoBehaviour
     {
         SaveDataItem data = SaveData.instance.LoadFromJson();
         ScoreScript.Instance.SaveHighScore(data.Highscore);
+        ScoreScript.Instance.SetScore(data.CurrentScore);
         ScoreScript.Instance.newBallCountforprefab = data.BonusBallCount;
+
+        ScoreScript.Instance.SetScore(data.CurrentScore);
 
         foreach (var brick in spawnedBricks)
         {
@@ -52,20 +56,26 @@ public class BrickSpawner : MonoBehaviour
         }
     }
 
+
+
     void Start()
     {
 
 
-        bool saveExists = System.IO.File.Exists(Application.persistentDataPath + "/saveBrickData.json");
+     
+            bool saveExists = System.IO.File.Exists(Application.persistentDataPath + "/saveBrickData.json");
 
-        if (saveExists && SaveData.instance != null)
-        {
-            LoadBricksFromSave();
-        }
-        else
-        {
-            SpawnBrickRow();
-        }
+            if (saveExists && SaveData.instance != null)
+            {
+                LoadBricksFromSave(); 
+            }
+            else
+            {
+                ScoreScript.Instance.Reset(); 
+                SpawnBrickRow();
+            }
+        
+
     }
 
     void Update()
@@ -108,6 +118,15 @@ public class BrickSpawner : MonoBehaviour
     
     public void SpawnBrickRow()
     {
+        foreach (GameObject brick in spawnedBricks)
+        {
+            if (brick != null && brick.activeSelf)
+                brick.SetActive(false);
+        }
+
+        ///////
+        ///
+
         for (int i = 0; i < 2; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -218,32 +237,7 @@ public class BrickSpawner : MonoBehaviour
     {
         rowsSpawned = 0;
     }
-    // public void LoadBricksFromSave()
-    // {
-    //     foreach (var brick in spawnedBricks)
-    //     {
-    //         if (brick != null)
-    //             brick.SetActive(false);
-    //     }
-    //     spawnedBricks.Clear();
-    //
-    //     SaveDataItem data = SaveData.instance.LoadFromJson();
-    //
-    //     foreach (var brickData in data.bricks)
-    //     {
-    //         GameObject brick = BrickPool.Instance.GetPooledBrick();
-    //         if (brick != null)
-    //         {
-    //             brick.transform.position = brickData.position;
-    //             brick.GetComponent<Brick>().SetValue(brickData.brickValue);
-    //             brick.SetActive(true);
-    //             spawnedBricks.Add(brick);
-    //         }
-    //     }
-    //
-    //     rowsSpawned = data.bricks.Count / columns;
-    // }
-    //
+   
 
     IEnumerator TileDown(Transform brick)
     {

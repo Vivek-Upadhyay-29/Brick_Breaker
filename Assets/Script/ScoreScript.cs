@@ -30,14 +30,14 @@ public class ScoreScript : MonoBehaviour
     {
         highScore = LoadHighScore(); 
         highScoreText.text = highScore.ToString();
-        Reset();
+       
     }
 
     public void Incrementer()
     {
         scoreManager.score += 1;
         scoreText.text = scoreManager.score.ToString();
-
+        Debug.Log("Incremented score: " + scoreManager.score);
         if (scoreManager.score >= highScore)
         {
             highScore = scoreManager.score;
@@ -78,4 +78,14 @@ public class ScoreScript : MonoBehaviour
     {
         return PlayerPrefs.GetInt("HighScore", 0);
     }
+    public void SetScore(int score)
+    {
+        scoreManager.score = score;
+        scoreText.text = score.ToString();
+    }
+    public void UpdateScoreText()
+    {
+        scoreText.text = scoreManager.score.ToString();
+    }
+
 }

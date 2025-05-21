@@ -27,6 +27,8 @@ public class SaveData : MonoBehaviour
     {
         saveData.Highscore = highscore;
         saveData.BonusBallCount = ScoreScript.Instance.newBallCountforprefab;
+        saveData.CurrentScore = ScoreScript.Instance.GetCurrentScore();
+        Debug.Log("Saving score: " + saveData.CurrentScore);
         saveData.bricks = new List<BrickData>();
 
         foreach (var brick in bricks)
@@ -83,6 +85,7 @@ public class SaveDataItem
     public int Highscore;
     public int BallCount;
     public int BonusBallCount;
+    public int CurrentScore;
     public List<BrickData> bricks = new List<BrickData>();
 }
 
