@@ -73,31 +73,31 @@ public class UIHandler : MonoBehaviour
         yield return null;
     }
 
-    //    public void RestartPanel()
+    //restartbtn
+
+    //public void RestartPanel()
     //{
     //    ScoreScript.Instance.Reset();
     //    AudioMangerScript.Instance.PlayOneShot(AudioType.BUTTON);
-    
-    //        for (int i = 0; i < brickSpawner.spawnedBricks.Count; i++)
+
+    //    foreach (GameObject brick in brickSpawner.spawnedBricks)
+    //    {
+    //        if (brick != null)
     //        {
-    //            if (brickSpawner.spawnedBricks[i])
-    //            {
-
-    //                brickSpawner.spawnedBricks[i].SetActive(false);
-
-    //            }
+    //            brick.SetActive(false);
     //        }
-
-    //        ballMultiplierPowerup._useTimes = 2;
-    //        brickSpawner.ResetRowCount();
-
-    //        ballMultiplierPowerup.textMesh.text = "2";
-    //        ScoreScript.Instance.newBallCountforprefab = 0;
-
-    //        ballMovement._ballcount = 1;
-    //        brickSpawner.SpawnBrickRow();
     //    }
 
+    //    brickSpawner.spawnedBricks.Clear(); 
+    //    brickSpawner.ResetRowCount();      
+
+    //    ballMultiplierPowerup._useTimes = 2;
+    //    ballMultiplierPowerup.textMesh.text = "2";
+    //    ScoreScript.Instance.newBallCountforprefab = 0;
+    //    ballMovement._ballcount = 1;
+
+    //    brickSpawner.SpawnBrickRow();
+    //}
     public void RestartPanel()
     {
         ScoreScript.Instance.Reset();
@@ -111,16 +111,42 @@ public class UIHandler : MonoBehaviour
             }
         }
 
-        brickSpawner.spawnedBricks.Clear(); 
-        brickSpawner.ResetRowCount();      
+        brickSpawner.spawnedBricks.Clear();
+        brickSpawner.ResetRowCount();
 
+     
         ballMultiplierPowerup._useTimes = 2;
         ballMultiplierPowerup.textMesh.text = "2";
+
+      
         ScoreScript.Instance.newBallCountforprefab = 0;
+
+     
+        Rigidbody2D mainBallRb = ballMovement.GetComponent<Rigidbody2D>();
+        mainBallRb.velocity = Vector2.zero;
+        mainBallRb.angularVelocity = 0f;
+       
+        ballMovement.transform.position = ballMovement.startPos;
+        ballMovement.slider.value = 0;
+        ballMovement.isMoving = false;
+        ballMovement.canForceDownBall = true;
+       foreach (GameObject cloneBall in ballMovement.ballClone)
+        {
+            if (cloneBall != null)
+            {
+                cloneBall.SetActive(false);
+            }
+        }
+        ballMovement.ballClone.Clear();
+        ballMovement.presentBallCount = 0;
+
         ballMovement._ballcount = 1;
 
         brickSpawner.SpawnBrickRow();
     }
+
+
+
 
     public void RestartGame()
     {

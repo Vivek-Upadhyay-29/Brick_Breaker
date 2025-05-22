@@ -115,37 +115,53 @@ public class BrickSpawner : MonoBehaviour
 
     }
 
+    //void Update()
+    //{
+    //    int totalBalls = ballMovementScript._ballcount + ScoreScript.Instance.newBallCountforprefab;
+
+    //    int newMinValue = minValue; 
+
+    //    if (totalBalls <= 8)
+    //        newMinValue = 3;
+    //    else if (totalBalls <= 12)
+    //        newMinValue = 15;
+    //    else if (totalBalls <= 15)
+    //        newMinValue = 20;
+    //    else if (totalBalls <= 35)
+    //        newMinValue = 25;
+    //    else if (totalBalls <= 55)
+    //        newMinValue = 40;
+    //    else if (totalBalls <= 75)
+    //        newMinValue = 50;
+    //    else
+    //        newMinValue = 60;
+
+    //    if (newMinValue != minValue)
+    //    {
+    //        Debug.Log($"minValue changed from {minValue} to {newMinValue}");
+    //        minValue = newMinValue;
+
+    //    }
+    //}
     void Update()
     {
-        
-        int newBallCount = ScoreScript.Instance.newBallCountforprefab;
-        if (ballMovementScript._ballcount+ newBallCount <= 8)
+        int newMinValue = CalculateMinValue();
+
+        if (newMinValue != minValue)
         {
-            minValue = 8;
-        }
-        else if (ballMovementScript._ballcount+ newBallCount > 8 && ballMovementScript._ballcount+ newBallCount <= 12)
-        {
-            minValue = 15;
-        }
-        else if (ballMovementScript._ballcount+ newBallCount  > 12 && ballMovementScript._ballcount+ newBallCount <= 15)
-        {
-            minValue = 20;
-        }
-        else if (ballMovementScript._ballcount + newBallCount > 35)
-        {
-            minValue = 25;
-        }
-        else if (ballMovementScript._ballcount + newBallCount > 55)
-        {
-            
-            minValue = 40;
-        }
-        else if (ballMovementScript._ballcount + newBallCount > 75)
-        {
-            
-            minValue = 50;
+            Debug.Log($"minValue changed from {minValue} to {newMinValue}");
+            minValue = newMinValue;
         }
     }
+    private int CalculateMinValue()
+    {
+        int totalBalls = ballMovementScript._ballcount + ScoreScript.Instance.newBallCountforprefab;
+        float difficultyFactor = Mathf.Log10(totalBalls + 1); 
+        int minValue = Mathf.FloorToInt(2 + difficultyFactor * 5);
+        return minValue;
+    }
+
+
     private float GetCurrentEmptyChance()
     {
         float currentChance = initialEmptyChance - (rowsSpawned * emptyChanceDecreaseRate);
@@ -174,7 +190,10 @@ public class BrickSpawner : MonoBehaviour
                 //this for deciding bricks
                 if (emptyRoll > currentEmptyChance)
                 {
-                    brickValue = Random.Range(minValue, ballMovementScript._ballcount + 3);
+                    int maxValue = ballMovementScript._ballcount + ScoreScript.Instance.newBallCountforprefab + 5;
+                    brickValue = Random.Range(minValue, Mathf.Max(minValue + 1, maxValue));
+
+                   // brickValue = Random.Range(minValue, ballMovementScript._ballcount + 3);
                 }
 
                 Vector3 spawnPos = transform.position + new Vector3(j * spacing, i * -spacing, 0);
@@ -241,7 +260,10 @@ public class BrickSpawner : MonoBehaviour
 
             if (emptyRoll > currentEmptyChance)
             {
-                brickValue = Random.Range(1, ballMovementScript._ballcount + 8);
+                int maxValue = ballMovementScript._ballcount + ScoreScript.Instance.newBallCountforprefab + 5;
+                brickValue = Random.Range(minValue, Mathf.Max(minValue + 1, maxValue));
+
+             //   brickValue = Random.Range(minValue, ballMovementScript._ballcount + 8);
             }
 
             Vector3 spawnPos = transform.position + new Vector3(j * spacing, 0, 0);

@@ -7,7 +7,7 @@ public class AddBall : MonoBehaviour
     [SerializeField] private float rotationSpeed = 100f; 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.gameObject.tag == "cloneBall" ) 
+        if (collision.CompareTag("Player") || collision.gameObject.tag == "cloneBall" || collision.gameObject.tag == "brick") 
         {
        
             AudioMangerScript.Instance.PlayOneShot(AudioType.MULTIPLIER);
